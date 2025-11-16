@@ -15,6 +15,9 @@ from .inconsistency.node_splitting import NodeSplitting
 from .inconsistency.design_treatment import DesignTreatmentInteraction
 from .models.bayesian_nma import BayesianNMA
 from .models.frequentist_nma import FrequentistNMA
+from .selection.lasso_selection import LassoSelection
+from .utils.missing_data import MultipleImputation
+from .utils.simulation import NMASimulator, SimulationParameters
 
 __all__ = [
     'TreatmentNetwork',
@@ -24,4 +27,8 @@ __all__ = [
     'DesignTreatmentInteraction',
     'BayesianNMA',
     'FrequentistNMA',
+    'LassoSelection',
+    'MultipleImputation',
+    'NMASimulator',
+    'SimulationParameters',
 ]

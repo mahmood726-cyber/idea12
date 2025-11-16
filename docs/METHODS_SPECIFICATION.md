@@ -40,10 +40,14 @@ $$\delta_{ik} \sim \mathcal{N}(d_{t_{ik}} - d_{t_{i1}}, \tau^2)$$
 **Priors (Bayesian framework):**
 $$
 \begin{align}
-d_j &\sim \mathcal{N}(0, 100^2), \quad j = 2, \ldots, J \\
-\tau &\sim \text{Half-Normal}(0, 1)
+d_j &\sim \mathcal{N}(0, 1.5^2), \quad j = 2, \ldots, J \quad \text{(weakly informative)} \\
+\tau &\sim \text{Half-Normal}(0, 0.5) \quad \text{(implies median tau} \approx 0.35\text{)}
 \end{align}
 $$
+
+**Prior justification:**
+- $\sigma_d = 1.5$: Places 95% prior mass on effects between -3 and 3 (log scale), appropriate for most health outcomes
+- $\sigma_\tau = 0.5$: Based on empirical distributions from Turner et al. (2012) for typical RCT heterogeneity
 
 **Likelihood (Frequentist framework):**
 
@@ -66,6 +70,12 @@ $$
 $$
 
 This accounts for the correlation between contrasts that share the same baseline arm.
+
+**Note on correlation structure:** The correlation of 0.5 is exact when effects are measured as differences in means with equal variances, or when log odds ratios are computed from large samples. For finite samples with binary outcomes, the exact correlation is:
+
+$$\text{Corr}(\hat{y}_{i2}, \hat{y}_{i3}) = \sqrt{\frac{n_{i1}/(n_{i1} + n_{i2})}{n_{i1}/(n_{i1} + n_{i3})}}$$
+
+For most practical purposes with moderate to large sample sizes, the 0.5 approximation is adequate (White et al., 2012).
 
 ## 4. Network Meta-Regression
 
@@ -104,16 +114,31 @@ This ensures that $d_j$ represents the treatment effect at the average covariate
 
 For a comparison $A$ vs $B$ with both direct and indirect evidence, we estimate:
 
-**Direct evidence:**
-$$d_{AB}^{\text{direct}} \sim \mathcal{N}(0, 100^2)$$
+**Model specification:**
 
-**Network (indirect) evidence:**
-$$d_{AB}^{\text{indirect}} = d_B - d_A$$
+We estimate separate parameters for direct and network evidence:
+$$d_{AB}^{\text{direct}} \sim \mathcal{N}(0, 1.5^2)$$
+
+The network evidence is derived from the basic effects:
+$$d_{AB}^{\text{network}} = d_B - d_A$$
+
+where $d_A, d_B$ are estimated from all data except the direct A vs B comparisons.
 
 **Inconsistency parameter:**
-$$\omega_{AB} = d_{AB}^{\text{direct}} - d_{AB}^{\text{indirect}}$$
+$$\omega_{AB} = d_{AB}^{\text{direct}} - d_{AB}^{\text{network}}$$
 
-$$\omega_{AB} \sim \mathcal{N}(0, 10^2)$$
+Prior on inconsistency:
+$$\omega_{AB} \sim \mathcal{N}(0, 1^2)$$
+
+**Likelihood for direct comparisons:**
+For studies directly comparing A vs B:
+$$y_i \sim \mathcal{N}(d_{AB}^{\text{direct}}, \text{se}_i^2 + \tau^2)$$
+
+**Likelihood for indirect comparisons:**
+For all other studies in the network:
+$$y_i \sim \mathcal{N}(d_{t_{i,\text{active}}} - d_{t_{i,\text{baseline}}}, \text{se}_i^2 + \tau^2)$$
+
+where the basic effects $d_j$ inform only the indirect estimate.
 
 The posterior distribution of $\omega_{AB}$ quantifies inconsistency. Evidence of inconsistency is indicated by:
 - $P(|\omega_{AB}| > 0) > 0.95$ (Bayesian p-value < 0.05)
@@ -186,18 +211,36 @@ $$T = W + \left(1 + \frac{1}{M}\right)B$$
 
 ### 6.4 Inconsistency Adjustment
 
-When inconsistency is detected, down-weight inconsistent loops:
+**Note:** These methods are experimental extensions and should be used with caution.
 
-$$w_i^* = w_i \cdot \exp(-\alpha |\omega_i|)$$
+**Option 1: Down-weighting approach (exploratory)**
 
-where $\omega_i$ is the inconsistency in the loop containing comparison $i$, and $\alpha$ is a tuning parameter.
+When inconsistency is detected, one option is to down-weight studies in inconsistent comparisons:
 
-Alternatively, bias adjustment model:
+$$w_i^* = w_i \cdot \exp(-\alpha |\hat{\omega}_i|)$$
+
+where $\hat{\omega}_i$ is the estimated inconsistency involving study $i$, and $\alpha$ is chosen via sensitivity analysis (typical values: 0.5-2.0).
+
+**Limitations:** This approach lacks formal theoretical justification and should only be used in sensitivity analyses.
+
+**Option 2: Bias adjustment model**
+
+Incorporate study-specific bias terms:
 
 $$\delta_{ik} \sim \mathcal{N}(d_{t_{ik}} - d_{t_{i1}} + b_i, \tau^2)$$
 
-where $b_i \sim \mathcal{N}(0, \sigma_b^2)$ is a study-specific bias term with:
-$$\sigma_b \sim \text{Half-Normal}(0, \tau_{\text{bias}})$$
+where $b_i \sim \mathcal{N}(0, \sigma_b^2)$ allows for study-specific biases.
+
+**Prior on bias variance:**
+$$\sigma_b \sim \text{Half-Normal}(0, 0.5)$$
+
+This approach is related to bias-adjustment models in meta-epidemiology (Welton et al., 2009).
+
+**Recommendation:** When inconsistency is detected, priority should be given to:
+1. Investigating sources through meta-regression
+2. Subgroup analyses by design characteristics
+3. Expert assessment of clinical/methodological differences
+Rather than automatic down-weighting procedures.
 
 ## 7. Prediction for New Populations
 

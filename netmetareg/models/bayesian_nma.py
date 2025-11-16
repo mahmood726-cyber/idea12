@@ -68,8 +68,8 @@ class BayesianNMA:
         delta_i1 = 0                        # Baseline arm
         delta_ik ~ Normal(d[t_ik] - d[t_i1] + X_i * beta[t_ik], tau^2)  # Random effects
         d[1] = 0                            # Reference treatment
-        d[k] ~ Normal(0, 100^2)             # Vague priors for treatment effects
-        tau ~ HalfNormal(sigma=1)           # Between-study heterogeneity
+        d[k] ~ Normal(0, 1.5^2)             # Weakly informative priors for treatment effects
+        tau ~ HalfNormal(sigma=0.5)         # Between-study heterogeneity (weakly informative)
 
     With meta-regression:
         delta_ik ~ Normal(d[t_ik] - d[t_i1] + X_i * (beta + gamma[t_ik]), tau^2)
@@ -80,16 +80,22 @@ class BayesianNMA:
                  data: NMAData,
                  reference_treatment: Optional[str] = None,
                  random_effects: bool = True,
-                 prior_sd_d: float = 100.0,
-                 prior_sd_tau: float = 1.0):
+                 prior_sd_d: float = 1.5,
+                 prior_sd_tau: float = 0.5):
         """Initialize Bayesian NMA model.
 
         Args:
             data: NMAData object containing study data
             reference_treatment: Reference treatment (default: first treatment)
             random_effects: Whether to use random effects model
-            prior_sd_d: Standard deviation for treatment effect priors
-            prior_sd_tau: Standard deviation for heterogeneity prior
+            prior_sd_d: Standard deviation for treatment effect priors (default: 1.5, weakly informative)
+            prior_sd_tau: Scale for heterogeneity prior (default: 0.5, weakly informative)
+
+        Notes:
+            Default priors are weakly informative:
+            - prior_sd_d=1.5: Implies ~95% of treatment effects between -3 and 3 on log scale
+            - prior_sd_tau=0.5: Implies median tau~0.35, reasonable for most RCTs
+            For more vague priors, use prior_sd_d=5.0, prior_sd_tau=1.0
         """
         self.data = data
         self.network = TreatmentNetwork(data)
@@ -289,7 +295,29 @@ class BayesianNMA:
         waic = az.waic(self.trace)
 
         # Convergence diagnostics
-        convergence = az.summary(self.trace, var_names=['d'])
+        convergence = az.summary(
+            self.trace,
+            var_names=['d', 'tau'] if self.random_effects else ['d']
+        )
+
+        # Check for convergence warnings
+        max_rhat = convergence['r_hat'].max()
+        min_ess = convergence['ess_bulk'].min()
+
+        if max_rhat > 1.01:
+            print(f"WARNING: Max R-hat = {max_rhat:.4f} > 1.01. Chains may not have converged.")
+            print("Consider increasing tune/draws or checking for identification issues.")
+
+        if min_ess < 400:
+            print(f"WARNING: Min ESS = {min_ess:.0f} < 400. Effective sample size is low.")
+            print("Consider increasing draws for better precision.")
+
+        # Check for divergences
+        if hasattr(self.trace, 'sample_stats'):
+            n_divergences = self.trace.sample_stats['diverging'].sum().item()
+            if n_divergences > 0:
+                print(f"WARNING: {n_divergences} divergent transitions detected.")
+                print("Consider increasing target_accept or reparameterizing model.")
 
         results = BayesianNMAResults(
             trace=self.trace,
