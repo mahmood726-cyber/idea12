@@ -1,6 +1,11 @@
 """
-Figure 3: LASSO Coefficient Paths and Cross-Validation Error
-Publication-quality two-panel figure showing covariate selection
+Figure 3: Schematic Illustration of LASSO Covariate Selection Process
+Publication-quality two-panel figure illustrating the LASSO selection methodology
+
+NOTE: This figure shows a STYLIZED ILLUSTRATION of the LASSO selection process
+based on the final selected covariates and coefficients from the analysis.
+Actual LASSO paths show more variability and irregular CV curves.
+For implementation details, see Supplementary Material Appendix D.
 """
 
 import matplotlib.pyplot as plt
@@ -103,20 +108,28 @@ def create_lasso_figure(output_path='figure3_lasso_paths', dpi=300):
             bbox=dict(boxstyle='round,pad=0.5', facecolor='lightyellow', alpha=0.8))
 
     # Overall title
-    fig.suptitle('LASSO Regularization for Covariate Selection in Network Meta-Regression',
+    fig.suptitle('Schematic Illustration: LASSO Covariate Selection Process\n' +
+                '(Stylized representation based on final selected model)',
                 fontsize=14, fontweight='bold', y=0.98)
 
+    # Add disclaimer note at bottom
+    disclaimer = ('NOTE: This is a stylized illustration for pedagogical purposes. Actual LASSO paths and CV curves\n' +
+                 'show more variability. Final coefficients: Age β=0.028 (p=0.022), Diabetes β=0.015, STEMI β=-0.008.')
+    fig.text(0.5, 0.01, disclaimer, ha='center', fontsize=8, style='italic',
+            bbox=dict(boxstyle='round,pad=0.5', facecolor='wheat', alpha=0.7))
+
     # Adjust layout
-    plt.tight_layout(rect=[0, 0, 1, 0.96])
+    plt.tight_layout(rect=[0, 0.04, 1, 0.96])
 
     # Save in multiple formats
     plt.savefig(f'{output_path}.png', dpi=dpi, bbox_inches='tight')
     plt.savefig(f'{output_path}.pdf', bbox_inches='tight')
     plt.savefig(f'{output_path}.eps', format='eps', bbox_inches='tight')
 
-    print(f"✓ Figure 3 saved: {output_path}.{{png,pdf,eps}}")
+    print(f"✓ Figure 3 (SCHEMATIC) saved: {output_path}.{{png,pdf,eps}}")
     print(f"  Resolution: {dpi} dpi")
-    print(f"  Selected λ*: 0.042 (all 3 covariates retained)")
+    print(f"  Type: Stylized illustration (not actual LASSO output)")
+    print(f"  Shows: λ*=0.042 with 3 covariates selected (final model results)")
 
     return fig
 

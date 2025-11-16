@@ -46,19 +46,25 @@ This repository provides a comprehensive Python implementation of network meta-a
 
 ## Installation
 
-### From PyPI (recommended)
+**IMPORTANT:** The `netmetareg` Python package is currently in preparation for PyPI release. The methods and algorithms described are fully implemented in the accompanying code (see `examples/` and `figures/` directories). Package release is planned for post-publication (estimated 2-3 weeks after acceptance).
+
+### From PyPI (planned)
 
 ```bash
 pip install netmetareg
 ```
 
+*Package not yet available on PyPI. See "From source" below for current access.*
+
 ### From source
 
 ```bash
-git clone https://github.com/[username]/netmetareg-paper.git
+git clone https://github.com/[REPOSITORY-URL-TBD]/netmetareg-paper.git
 cd netmetareg-paper
 pip install -e .
 ```
+
+**Note:** Repository URL will be finalized upon journal acceptance.
 
 ### Dependencies
 
@@ -84,16 +90,18 @@ from netmetareg import NetworkMetaRegression
 # 24 studies, 28,456 patients, 4 stent types
 
 # Load data (study-level)
+# Note: Code abbreviated for clarity. Full dataset has 24 studies.
+# See examples/cardiovascular_worked_example.py for complete implementation.
 data = pd.DataFrame({
-    'study': ['ISAR-STEREO', 'RAVEL', 'SIRIUS', ...],
-    'treatment': ['DES', 'DES', 'DES', ...],
-    'comparator': ['BMS', 'BMS', 'BMS', ...],
-    'events': [38, 5, 87, ...],
-    'total': [517, 120, 533, ...],
-    'mean_age': [61.5, 60.8, 63.2, ...],
-    'diabetes_pct': [18.2, 16.4, 26.3, ...],
-    'stemi_pct': [44.1, 0, 68.2, ...]
-})
+    'study': ['ISAR-STEREO', 'RAVEL', 'SIRIUS'],  # ... 24 studies total
+    'treatment': ['DES', 'DES', 'DES'],
+    'comparator': ['BMS', 'BMS', 'BMS'],
+    'events': [38, 5, 87],
+    'total': [517, 120, 533],
+    'mean_age': [61.5, 60.8, 63.2],
+    'diabetes_pct': [18.2, 16.4, 26.3],
+    'stemi_pct': [44.1, 0, 68.2]
+})  # (abbreviated - see examples/ for full data)
 
 # Initialize network meta-regression
 nmr = NetworkMetaRegression(
@@ -271,7 +279,30 @@ If you use this software or methods in your research, please cite:
   publisher={Zenodo},
   version={0.1.0},
   doi={10.5281/zenodo.XXXXXXX},
-  url={https://github.com/[username]/netmetareg-paper}
+  url={https://github.com/[REPOSITORY-URL-TBD]/netmetareg-paper}
+}
+```
+
+**Note:** DOI and repository URL will be finalized upon journal acceptance and Zenodo archival.
+
+---
+
+## Disclaimer
+
+**Software Availability:** The methods described in the manuscript are fully implemented in the code provided in this repository (`examples/`, `figures/`, and simulation scripts). The `netmetareg` Python package referenced in the README and comparison table is in preparation for release and will be made available via PyPI within 2-3 weeks following publication acceptance. All core functionality can currently be accessed through the provided example scripts.
+
+**Citation Timing:** Please cite the manuscript once published. Software DOI will be generated upon Zenodo deposit following acceptance.
+
+---
+
+```bibtex
+# Alternative citation (for pre-publication use of methods):
+@misc{netmetareg_code,
+  author={[Authors]},
+  title={Network Meta-Regression Code Repository},
+  year={2025},
+  howpublished={GitHub repository},
+  url={[URL will be added upon acceptance]}
 }
 ```
 
@@ -368,9 +399,11 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 **Maintainer:** [Name] ([email@institution.edu])
 
-**Issues:** https://github.com/[username]/netmetareg-paper/issues
+**Issues:** [GitHub issues URL will be provided upon acceptance]
 
-**Discussions:** https://github.com/[username]/netmetareg-paper/discussions
+**Discussions:** [GitHub discussions URL will be provided upon acceptance]
+
+**For pre-publication inquiries:** Contact corresponding author via journal editorial office
 
 ---
 

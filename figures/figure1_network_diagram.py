@@ -31,12 +31,14 @@ def create_network_diagram(output_path='figure1_network_diagram', dpi=300):
         # No direct BMS vs BAS comparison (indirect only)
     }
 
-    # Total patients per treatment (synthetic)
+    # Total patients per treatment (illustrative values proportional to study involvement)
+    # Note: Actual per-treatment totals vary by study; these are representative values
+    # Total across all treatments sums to 28,456 (matches dataset)
     n_patients = {
-        'BMS': 9842,
-        'DES': 12456,
-        'BAS': 2634,
-        'CS': 3524
+        'BMS': 9842,   # Reference treatment, many studies
+        'DES': 12456,  # Most widely studied (current standard)
+        'BAS': 2634,   # Newer technology, fewer studies
+        'CS': 3524     # Specialized use, moderate evidence
     }
 
     # Create graph
@@ -123,8 +125,8 @@ def create_network_diagram(output_path='figure1_network_diagram', dpi=300):
 
     # Add caption
     caption = ('Edge width proportional to number of direct comparison studies.\n' +
-              'Node size proportional to total patients randomized to treatment.\n' +
-              'No direct comparison between BMS and BAS (indirect evidence only).')
+              'Node size proportional to total patients (illustrative values).\n' +
+              'No direct BMS vs BAS comparison: BAS introduced after 2010, not directly compared to older BMS technology.')
 
     fig.text(0.5, 0.02, caption, ha='center', fontsize=9, style='italic',
             wrap=True)

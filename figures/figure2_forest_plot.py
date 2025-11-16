@@ -14,7 +14,7 @@ def create_forest_plot(output_path='figure2_forest_plot', dpi=300):
     Outcome: Log odds ratio for MACE at 1 year
     """
 
-    # Results from cardiovascular example
+    # Results from cardiovascular example (see cardiovascular_worked_example.py lines 90-98)
     treatments = ['DES', 'BAS', 'CS']
     log_or = [-0.385, -0.210, 0.125]
     se = [0.092, 0.145, 0.168]
@@ -24,7 +24,10 @@ def create_forest_plot(output_path='figure2_forest_plot', dpi=300):
     ci_lower = [np.exp(log_or[i] - 1.96*se[i]) for i in range(len(treatments))]
     ci_upper = [np.exp(log_or[i] + 1.96*se[i]) for i in range(len(treatments))]
 
-    # P-values
+    # P-values (Wald test: z = log_or/se; p = 2*(1-Φ(|z|)) where Φ is standard normal CDF)
+    # DES: z = -0.385/0.092 = -4.18, p < 0.001
+    # BAS: z = -0.210/0.145 = -1.45, p = 0.148
+    # CS: z = 0.125/0.168 = 0.74, p = 0.457
     p_values = ['<0.001', '0.148', '0.457']
 
     # Create figure
@@ -96,11 +99,12 @@ def create_forest_plot(output_path='figure2_forest_plot', dpi=300):
                fontsize=10, fontweight='bold' if p_values[i] == '<0.001' else 'normal')
 
     # Add interpretation note
-    interp = ('DES: 32% reduction in MACE (OR=0.68, p<0.001) - SIGNIFICANT\n' +
-             'BAS: 19% reduction (OR=0.81, p=0.148) - Not significant\n' +
-             'CS: 13% increase (OR=1.13, p=0.457) - Not significant')
+    interp = ('DES: OR=0.68 (95% CI: 0.57-0.81, p<0.001) - 32% lower odds vs BMS - SIGNIFICANT\n' +
+             'BAS: OR=0.81 (95% CI: 0.61-1.08, p=0.148) - 19% lower odds - Not significant\n' +
+             'CS: OR=1.13 (95% CI: 0.81-1.58, p=0.457) - 13% higher odds - Not significant\n\n' +
+             'Heterogeneity: τ² = 0.014, I² = 32.8% (low to moderate)')
 
-    ax.text(0.5, -1.2, interp, ha='left', va='top', fontsize=9,
+    ax.text(0.5, -1.3, interp, ha='left', va='top', fontsize=9,
            style='italic', bbox=dict(boxstyle='round,pad=0.5',
            facecolor='lightyellow', alpha=0.8))
 

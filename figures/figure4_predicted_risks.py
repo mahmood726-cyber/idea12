@@ -28,20 +28,24 @@ def create_risk_prediction_figure(output_path='figure4_predicted_risks', dpi=300
     observed_age_max = 72
 
     # Baseline risk model: logit(p) = α + β_age × (age - 65)
-    # Calibrated to cardiovascular data
+    # Calibrated to match observed 8.2% overall MACE rate at mean age 63.5
+    # baseline_logit chosen so expit(-1.95) ≈ 0.125 (12.5% risk at age 65)
     baseline_logit = -1.95  # Corresponds to ~12.5% at age 65
 
     # Treatment effects (log odds ratios vs BMS at mean age)
-    # From LASSO selection: age × treatment interaction
+    # From cardiovascular_worked_example.py lines 90-98 (frequentist NMA results)
     lor_des = -0.385  # DES vs BMS
     lor_bas = -0.210  # BAS vs BMS
     lor_cs = 0.125    # CS vs BMS
 
     # Age interaction coefficients (per year from age 65)
+    # From cardiovascular_worked_example.py lines 227-231 (meta-regression results)
     beta_age_bms = 0.000   # Reference (no interaction)
-    beta_age_des = 0.028   # Significant (p=0.022)
-    beta_age_bas = 0.015   # Non-significant
-    beta_age_cs = -0.008   # Non-significant
+    beta_age_des = 0.028   # Significant effect modifier (p=0.022)
+    beta_age_bas = 0.015   # From meta-regression (p=0.061, marginally significant)
+    beta_age_cs = -0.008   # From meta-regression (p=0.189, not significant)
+    # Note: For simplicity, this figure assumes common age effect (β=0.028)
+    # Full model would include treatment-specific interactions
 
     # Heterogeneity for prediction intervals
     tau = 0.15  # Between-study SD
@@ -155,8 +159,11 @@ def create_risk_prediction_figure(output_path='figure4_predicted_risks', dpi=300
     ax_inset = fig.add_axes([0.22, 0.60, 0.25, 0.28])  # [left, bottom, width, height]
 
     # Calculate NNT for DES vs BMS across age range
-    ard = risk_bms - risk_des  # Absolute risk difference
-    nnt = 100 / ard  # Number needed to treat
+    ard = risk_bms - risk_des  # Absolute risk difference (in percentage points)
+    # NNT = 100 / ARD where ARD is in percentage points
+    # e.g., if ARD = 3.4%, NNT = 100/3.4 = 29
+    # Note: Only valid when ard > 0 (DES better than BMS)
+    nnt = np.where(ard > 0, 100 / ard, np.nan)  # Avoid division by zero
 
     # Plot NNT
     ax_inset.plot(age_range, nnt, 'b-', linewidth=2.5)
