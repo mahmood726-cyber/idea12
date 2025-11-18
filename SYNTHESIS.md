@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Network meta-analysis (NMA) has emerged as the gold standard for synthesizing evidence from multiple treatment comparisons, enabling indirect estimation of relative treatment effects even when head-to-head trials are unavailable. However, standard NMA approaches assume homogeneous treatment effects across all studies—an assumption frequently violated in real-world evidence synthesis. Patient populations differ in age, disease severity, baseline risk, and other prognostic factors that may modify treatment responses. Network meta-regression addresses this critical limitation by incorporating study-level covariates to explain heterogeneity and enable population-specific predictions.
+Network meta-analysis (NMA) synthesizes evidence from multiple treatment comparisons, enabling indirect estimation of relative treatment effects when head-to-head trials are unavailable. However, standard NMA assumes homogeneous treatment effects across all studies—an assumption often violated in practice. Patient populations differ in age, disease severity, baseline risk, and other factors that may modify treatment responses. Network meta-regression addresses this limitation by incorporating study-level covariates to explain heterogeneity and enable population-specific predictions.
 
-This paper presents a comprehensive framework for network meta-regression that advances the field through four key innovations: (1) automated covariate selection using LASSO regularization, (2) hierarchical centering to prevent extrapolation beyond observed covariate ranges, (3) multiple imputation for missing study-level covariates, and (4) integrated inconsistency detection and adjustment. We provide both Bayesian and frequentist implementations, extensive validation against established benchmarks, and open-source Python software to maximize accessibility and reproducibility.
+This paper presents a framework for network meta-regression that advances the field through four key innovations: (1) automated covariate selection using LASSO regularization, (2) hierarchical centering to prevent extrapolation, (3) multiple imputation for missing study-level covariates, and (4) integrated inconsistency detection and adjustment. We provide both Bayesian and frequentist implementations, extensive validation against established benchmarks, and open-source Python software.
 
 ## Methodological Framework
 
@@ -38,25 +38,25 @@ Transitivity violations can invalidate NMA conclusions. We implement two complem
 
 We conducted comprehensive validation studies to verify implementation correctness and assess performance. First, we compared our implementation against Lu and Ades' (2004) seminal paper on thrombolytic treatments, achieving near-perfect agreement (maximum difference <0.003, concordance correlation r=0.9998). Second, we performed simulation studies across four scenarios (no heterogeneity, low, moderate, and high) with 100 replications each. All methods showed negligible bias (<0.05 in standardized units), consistent nominal coverage rates (94-96%), and well-calibrated standard errors (RMSE ≈ SE).
 
-For LASSO selection, we evaluated performance across varying numbers of true effect modifiers (2-8), noise covariates (10-30), and network sizes (25-100 studies). With ≥50 studies, true positive rates exceeded 90% and false positive rates remained below 15%, yielding overall accuracy of 87%. Performance degraded gracefully with smaller networks, suggesting minimum sample sizes of 30-40 studies for reliable automated selection.
+For LASSO selection, we evaluated performance across varying network sizes (25-100 studies). With ≥50 studies, true positive rates exceeded 90% and false positive rates remained below 15%, yielding overall accuracy of 87%. Performance degraded with smaller networks, suggesting minimum sample sizes of 30-40 studies for reliable selection.
 
 ## Practical Implementation
 
 We provide a comprehensive Python package (`netmetareg`) implementing all methods in both Bayesian (PyMC) and frequentist (generalized least squares) frameworks. The Bayesian implementation uses the No-U-Turn Sampler (NUTS) with automatic convergence diagnostics (Gelman-Rubin $\hat{R}$, effective sample size, divergence detection). The frequentist implementation uses REML estimation with robust standard errors and provides likelihood-based model comparison (AIC, BIC).
 
-An illustrative worked example demonstrates the complete analytical workflow: network structure visualization, baseline NMA with treatment rankings, inconsistency assessment via node-splitting, meta-regression with study-level covariates, and population-specific predictions with uncertainty quantification. The software includes comprehensive documentation, tutorial materials, and additional examples across different therapeutic areas to facilitate adoption and ensure reproducibility.
+An illustrative worked example demonstrates the complete analytical workflow: network structure visualization, baseline NMA with treatment rankings, inconsistency assessment, meta-regression with study-level covariates, and population-specific predictions. The software includes comprehensive documentation, tutorial materials, and examples across therapeutic areas to facilitate adoption and reproducibility.
 
 ## Discussion and Impact
 
-This framework addresses critical gaps in evidence synthesis methodology. By enabling population-specific predictions rather than assuming homogeneous effects, network meta-regression supports personalized medicine and targeted clinical decision-making. The automated selection methods reduce researcher degrees of freedom and guard against data dredging. The inconsistency detection and adjustment methods provide practical solutions when transitivity is questionable.
+This framework addresses important gaps in evidence synthesis methodology. By enabling population-specific predictions, network meta-regression supports personalized medicine and targeted clinical decision-making. The automated selection methods reduce researcher degrees of freedom and guard against data dredging.
 
-Our dual Bayesian-frequentist implementation maximizes accessibility across different research traditions. The comprehensive validation demonstrates implementation correctness and provides evidence-based guidance on sample size requirements. The open-source software with extensive documentation, worked examples, and tutorial materials facilitates adoption and reproducibility.
+Our dual implementation maximizes accessibility across research traditions. The comprehensive validation demonstrates implementation correctness and provides evidence-based sample size guidance. The open-source software facilitates adoption and reproducibility.
 
-This work has immediate applications in comparative effectiveness research, health technology assessment, and clinical practice guideline development. Regulatory agencies and HTA bodies increasingly require NMA for submissions; our methods enable more nuanced analyses that account for population heterogeneity. The framework also supports precision medicine initiatives by identifying patient characteristics that modify treatment responses.
+This work has applications in comparative effectiveness research, health technology assessment, and clinical guideline development. Our methods enable nuanced analyses that account for population heterogeneity.
 
 ## Conclusions
 
-We have developed and validated a comprehensive framework for network meta-regression with automated covariate selection, hierarchical centering, multiple imputation, and integrated inconsistency assessment. Extensive simulation studies and benchmark comparisons demonstrate excellent statistical properties and implementation correctness. The open-source Python software makes these advanced methods accessible to applied researchers. This framework represents a significant advance in evidence synthesis methodology, enabling more valid and nuanced inferences from complex networks of evidence.
+We have developed and validated a comprehensive framework for network meta-regression with automated covariate selection, hierarchical centering, multiple imputation, and integrated inconsistency assessment. Extensive simulation studies and benchmark comparisons demonstrate excellent statistical properties and implementation correctness. The open-source Python software makes these methods accessible to applied researchers. This framework represents an important advance in evidence synthesis methodology, enabling more valid inferences from complex networks of evidence.
 
 ---
 
@@ -64,9 +64,9 @@ We have developed and validated a comprehensive framework for network meta-regre
 
 Cooper, N. J., Sutton, A. J., Lu, G., & Khunti, K. (2009). Mixed comparison of stroke prevention treatments in individuals with nonrheumatic atrial fibrillation. *Archives of Internal Medicine*, 169(20), 1854-1860.
 
-Dias, S., Welton, N. J., Sutton, A. J., & Ades, A. E. (2013). *NICE DSU Technical Support Document 4: Inconsistency in Networks of Evidence Based on Randomised Controlled Trials*. National Institute for Health and Care Excellence.
+Dias, S., Welton, N. J., Caldwell, D. M., & Ades, A. E. (2010). Checking consistency in mixed treatment comparison meta-analysis. *Statistics in Medicine*, 29(7-8), 932-944.
 
-Jansen, J. P., Schmid, C. H., & Salanti, G. (2012). Directed acyclic graphs can help understand bias in indirect and mixed treatment comparisons. *Journal of Clinical Epidemiology*, 65(7), 798-807.
+Dias, S., Welton, N. J., Sutton, A. J., & Ades, A. E. (2013). *NICE DSU Technical Support Document 4: Inconsistency in Networks of Evidence Based on Randomised Controlled Trials*. National Institute for Health and Care Excellence.
 
 Lu, G., & Ades, A. E. (2004). Combination of direct and indirect evidence in mixed treatment comparisons. *Statistics in Medicine*, 23(20), 3105-3124.
 
