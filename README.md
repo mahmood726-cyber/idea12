@@ -21,6 +21,41 @@ This package implements state-of-the-art methods for network meta-analysis that 
 - Class effects modeling
 - Heterogeneity vs. inconsistency decomposition
 
+### Advanced Statistical Methods ✨ NEW
+
+#### 1. Advanced Bayesian Methods
+- **Horseshoe Priors**: Sparse covariate selection superior to LASSO
+- **Regularized Horseshoe**: Enhanced shrinkage with slab component
+- **Robust Models**: Student-t likelihoods for outlier resistance
+- **Treatment-Specific Heterogeneity**: Flexible variance structures
+
+#### 2. Model Comparison & Diagnostics
+- **LOO-CV**: Leave-one-out cross-validation with PSIS
+- **Model Stacking**: Optimal Bayesian model averaging
+- **Posterior Predictive Checks**: Comprehensive model validation
+- **LOO-PIT**: Probability integral transform diagnostics
+- **Pareto k Diagnostics**: Reliability assessment
+
+#### 3. Publication Bias Detection
+- **Selection Models**: Model publication probability
+- **Comparison-Adjusted Funnel Plots**: Network-specific bias detection
+- **P-curve Analysis**: Detect p-hacking and assess evidential value
+- **Egger, Harbord, Peters Tests**: Multiple asymmetry tests
+- **Trim-and-Fill**: Estimate missing studies
+- **DOI Plots**: Alternative visualization methods
+
+#### 4. Network Coherence Analysis
+- **Contribution Matrix**: Quantify evidence flow in network
+- **Network Connectivity**: Identify critical comparisons
+- **Evidence Diversity**: Assess redundancy and robustness
+- **Leave-One-Out Sensitivity**: Impact of removing comparisons
+
+#### 5. Advanced Prediction
+- **Prediction Intervals**: Account for future heterogeneity
+- **Bayesian Predictive Distributions**: Full uncertainty quantification
+- **Population-Specific Predictions**: Covariate-adjusted forecasts
+- **Extrapolation Detection**: Warn about out-of-range predictions
+
 ### Novel Methodological Extensions
 1. **Automated Covariate Selection**: LASSO/elastic net regularization with cross-validation
 2. **Hierarchical Centering**: Network-average centering to improve interpretation and avoid extrapolation

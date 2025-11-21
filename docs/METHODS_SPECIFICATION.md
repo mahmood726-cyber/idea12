@@ -329,7 +329,166 @@ All models are implemented in Python with:
 - **Network analysis:** NetworkX
 - **Visualization:** Matplotlib, Seaborn, ArviZ
 
-## 12. References
+## 12. Advanced Methodological Extensions
+
+### 12.1 Horseshoe Prior for Sparse Covariate Selection
+
+The horseshoe prior provides continuous shrinkage with superior properties to LASSO:
+
+$$\beta_p \sim \mathcal{N}(0, \lambda_p \tau), \quad \lambda_p \sim \text{Half-Cauchy}(0, 1), \quad \tau \sim \text{Half-Cauchy}(0, \tau_0)$$
+
+where $\tau_0 = \frac{p_0}{p - p_0} \frac{1}{\sqrt{N}}$ is determined by expected sparsity.
+
+**Regularized Horseshoe (Piironen & Vehtari 2017):**
+
+$$\tilde{\lambda}_p = \frac{\lambda_p \sqrt{c^2}}{{\sqrt{c^2 + \tau^2 \lambda_p^2}}}, \quad c^2 \sim \text{InverseGamma}(\nu_{\text{slab}}/2, \nu_{\text{slab}} s_{\text{slab}}^2/2)$$
+
+This adds a "slab" component that prevents overfitting while maintaining strong shrinkage for noise covariates.
+
+**Advantages over LASSO:**
+- Stronger shrinkage toward zero for noise covariates
+- Minimal shrinkage for true signals
+- No need for cross-validation to select penalty parameter
+- Full posterior distribution for inference
+
+### 12.2 Robust Models with Student-t Likelihood
+
+To handle outliers and heavy-tailed distributions:
+
+$$y_{ik} \sim \text{StudentT}(\nu, \delta_{ik}, \text{se}_{ik})$$
+
+where $\nu$ controls tail thickness:
+- $\nu = 3\text{-}5$: Heavy tails, robust to outliers
+- $\nu > 30$: Approximately normal
+- Estimate $\nu$ from data: $\nu \sim \text{Gamma}(2, 0.1)$
+
+**Benefits:**
+- Automatically down-weights outliers
+- More realistic for heterogeneous evidence
+- Better predictive performance in presence of outliers
+
+### 12.3 Treatment-Specific Heterogeneity
+
+Instead of common $\tau^2$, allow treatment-specific heterogeneity:
+
+$$\delta_{ik} \sim \mathcal{N}(d_{t_{ik}} - d_{t_{i1}}, \tau_{t_{ik}}^2)$$
+
+with hierarchical prior:
+$$\tau_j \sim \text{Half-Normal}(0, \sigma_{\tau}), \quad \sigma_{\tau} \sim \text{Half-Cauchy}(0, 0.5)$$
+
+### 12.4 Advanced Model Comparison
+
+**Leave-One-Out Cross-Validation (LOO-CV):**
+
+$$\text{ELPD}_{\text{LOO}} = \sum_{i=1}^N \log p(y_i | y_{-i})$$
+
+Estimated using Pareto Smoothed Importance Sampling (PSIS). Diagnostics:
+- Pareto $k < 0.5$: Good
+- $0.5 \leq k < 0.7$: OK
+- $k \geq 0.7$: Unreliable (use K-fold CV)
+
+**Model Averaging via Stacking:**
+
+Find optimal weights $w_m$ to minimize:
+$$\sum_{i=1}^N \left(\log \sum_{m=1}^M w_m p_m(y_i | y_{-i})\right)$$
+
+subject to $\sum w_m = 1, w_m \geq 0$.
+
+### 12.5 Posterior Predictive Checks
+
+For test statistic $T(\cdot)$, compute Bayesian p-value:
+
+$$p_B = P(T(y^{\text{rep}}) \geq T(y^{\text{obs}}) | y^{\text{obs}})$$
+
+Test statistics include:
+- Mean, variance, min, max
+- Quantiles
+- Model-specific features
+
+**LOO-PIT (Probability Integral Transform):**
+
+$$\text{PIT}_i = P(y_i^{\text{rep}} \leq y_i^{\text{obs}} | y_{-i})$$
+
+Should be uniform under correct model.
+
+### 12.6 Publication Bias Methods
+
+**Selection Models:**
+
+Model publication probability as function of p-value:
+$$P(\text{published} | \text{effect}, \text{se}) = \frac{1}{1 + \exp(-\alpha - \beta |z|)}$$
+
+**Comparison-Adjusted Funnel Plot:**
+
+For network MA, adjust for comparison type:
+$$y_i^{\text{adj}} = y_i - \hat{d}_{AB}^{\text{network}}$$
+
+Test asymmetry using adjusted effects.
+
+**P-curve Analysis:**
+
+Tests if distribution of significant p-values is:
+- Right-skewed (evidential value)
+- Flat or left-skewed (p-hacking/bias)
+
+### 12.7 Network Coherence and Contribution Analysis
+
+**Contribution Matrix:**
+
+For design matrix $\mathbf{X}$, the hat matrix:
+$$\mathbf{H} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T$$
+
+gives contribution of direct evidence to network estimates.
+
+**Network Connectivity:**
+- Bridges: Edges whose removal disconnects network
+- Articulation points: Critical nodes
+- Evidence diversity: Number of independent paths
+
+### 12.8 Prediction Intervals
+
+**Frequentist Prediction Interval:**
+
+$$\text{PI} = \hat{d}_j \pm t_{\alpha/2, df} \sqrt{\text{SE}(\hat{d}_j)^2 + \hat{\tau}^2}$$
+
+Accounts for both estimation uncertainty and between-study heterogeneity.
+
+**Bayesian Prediction:**
+
+For future study effect $\theta^{\text{new}}$:
+$$\theta^{\text{new}} | \mathbf{y} \sim \int \mathcal{N}(\theta^{\text{new}} | d_j, \tau^2) p(d_j, \tau | \mathbf{y}) \, dd_j \, d\tau$$
+
+Sample from posterior to get full predictive distribution.
+
+**Prediction for New Population:**
+
+With covariate vector $\mathbf{X}_{\text{new}}$:
+$$\hat{d}_{jj'}^{\text{new}} = \hat{d}_j - \hat{d}_{j'} + \mathbf{X}_{\text{new}}^T (\hat{\boldsymbol{\beta}} + \hat{\boldsymbol{\gamma}}_j - \hat{\boldsymbol{\gamma}}_{j'})$$
+
+with prediction interval accounting for $\tau^2$ and parameter uncertainty.
+
+### 12.9 Small-Study Effects Detection
+
+**Egger's Test:** Regress effect on precision
+**Harbord's Test:** Modified for binary outcomes
+**Peters' Test:** Uses sample size instead of precision
+**DOI Plot:** Alternative visualization to funnel plot
+**Trim-and-Fill:** Estimates missing studies and adjusts
+
+## 13. Software Implementation
+
+All models implemented in Python with:
+
+- **Bayesian estimation:** PyMC (NUTS sampler, automatic differentiation)
+- **Diagnostics:** ArviZ (LOO-CV, PSIS, convergence diagnostics)
+- **Frequentist estimation:** NumPy/SciPy (GLS, REML, optimization)
+- **Regularization:** scikit-learn (LASSO, elastic net, cross-validation)
+- **Network analysis:** NetworkX (graph algorithms, connectivity)
+- **Visualization:** Matplotlib, Seaborn, ArviZ plots
+
+## 14. References
+
+### Core NMA Methodology
 
 1. Dias, S., Welton, N. J., Caldwell, D. M., & Ades, A. E. (2010). Checking consistency in mixed treatment comparison meta-analysis. *Statistics in Medicine*, 29(7-8), 932-944.
 
@@ -337,8 +496,52 @@ All models are implemented in Python with:
 
 3. Salanti, G., Ades, A. E., & Ioannidis, J. P. (2011). Graphical methods and numerical summaries for presenting results from multiple-treatment meta-analysis. *Journal of Clinical Epidemiology*, 64(2), 163-171.
 
-4. Meinshausen, N., & Bühlmann, P. (2010). Stability selection. *Journal of the Royal Statistical Society: Series B*, 72(4), 417-473.
+4. Rubin, D. B. (1987). *Multiple Imputation for Nonresponse in Surveys*. John Wiley & Sons.
 
-5. Rubin, D. B. (1987). *Multiple Imputation for Nonresponse in Surveys*. John Wiley & Sons.
+5. Gelman, A., Carlin, J. B., Stern, H. S., et al. (2013). *Bayesian Data Analysis* (3rd ed.). CRC Press.
 
-6. Gelman, A., Carlin, J. B., Stern, H. S., et al. (2013). *Bayesian Data Analysis* (3rd ed.). CRC Press.
+### Advanced Bayesian Methods
+
+6. Carvalho, C. M., Polson, N. G., & Scott, J. G. (2010). The horseshoe estimator for sparse signals. *Biometrika*, 97(2), 465-480.
+
+7. Piironen, J., & Vehtari, A. (2017). Sparsity information and regularization in the horseshoe and other shrinkage priors. *Electronic Journal of Statistics*, 11(2), 5018-5051.
+
+8. Gelman, A. (2006). Prior distributions for variance parameters in hierarchical models. *Bayesian Analysis*, 1(3), 515-534.
+
+### Model Comparison and Diagnostics
+
+9. Vehtari, A., Gelman, A., & Gabry, J. (2017). Practical Bayesian model evaluation using leave-one-out cross-validation and WAIC. *Statistics and Computing*, 27(5), 1413-1432.
+
+10. Yao, Y., Vehtari, A., Simpson, D., & Gelman, A. (2018). Using stacking to average Bayesian predictive distributions. *Bayesian Analysis*, 13(3), 917-1007.
+
+11. Gabry, J., Simpson, D., Vehtari, A., Betancourt, M., & Gelman, A. (2019). Visualization in Bayesian workflow. *Journal of the Royal Statistical Society: Series A*, 182(2), 389-402.
+
+### Publication Bias
+
+12. Chaimani, A., Higgins, J. P., Mavridis, D., Spyridonos, P., & Salanti, G. (2013). Graphical tools for network meta-analysis in STATA. *PLoS ONE*, 8(10), e76654.
+
+13. Egger, M., Smith, G. D., Schneider, M., & Minder, C. (1997). Bias in meta-analysis detected by a simple, graphical test. *BMJ*, 315(7109), 629-634.
+
+14. Simonsohn, U., Nelson, L. D., & Simmons, J. P. (2014). P-curve: A key to the file-drawer. *Journal of Experimental Psychology: General*, 143(2), 534-547.
+
+15. Copas, J., & Shi, J. Q. (2000). Meta-analysis, funnel plots and sensitivity analysis. *Biostatistics*, 1(3), 247-262.
+
+### Robust Methods
+
+16. Geweke, J. (1993). Bayesian treatment of the independent Student-t linear model. *Journal of Applied Econometrics*, 8(S1), S19-S40.
+
+### Prediction
+
+17. Riley, R. D., Higgins, J. P., & Deeks, J. J. (2011). Interpretation of random effects meta-analyses. *BMJ*, 342, d549.
+
+18. Higgins, J. P., Thompson, S. G., & Spiegelhalter, D. J. (2009). A re-evaluation of random-effects meta-analysis. *Journal of the Royal Statistical Society: Series A*, 172(1), 137-159.
+
+### Variable Selection
+
+19. Meinshausen, N., & Bühlmann, P. (2010). Stability selection. *Journal of the Royal Statistical Society: Series B*, 72(4), 417-473.
+
+### Network Analysis
+
+20. Papakonstantinou, T., Nikolakopoulou, A., Higgins, J. P., Egger, M., & Salanti, G. (2020). CINeMA: Software for semiautomated assessment of the confidence in the results of network meta-analysis. *Campbell Systematic Reviews*, 16(1), e1080.
+
+21. König, J., Krahn, U., & Binder, H. (2013). Visualizing the flow of evidence in network meta-analysis and characterizing mixed treatment comparisons. *Statistics in Medicine*, 32(30), 5414-5429.
