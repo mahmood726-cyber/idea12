@@ -1,0 +1,3 @@
+review_id,title,domain,intervention,outcome,publication_year,obs_studies_n,obs_hr,obs_ci_lower,obs_ci_upper,obs_n,obs_i2,rct_studies_n,rct_hr,rct_ci_lower,rct_ci_upper,rct_n,rct_i2,funding_source,geographic_region,notes
+1,Example Review Title,Cardiology,Beta-blockers,Mortality,2020,8,0.75,0.65,0.87,15000,45,4,0.82,0.70,0.96,5000,30,Mixed,North America,Example entry
+2,,,,,,,,,,,,,,,,,,,Complete one row per Cochrane review

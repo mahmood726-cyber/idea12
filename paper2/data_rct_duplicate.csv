@@ -1,0 +1,30 @@
+trial,intervention,condition,rct_effect,rct_ci_lower,rct_ci_upper,obs_effect,obs_ci_lower,obs_ci_upper,outcome_type,agreement,source
+LEADER,Liraglutide,T2D cardiovascular,0.87,0.78,0.97,0.82,0.76,0.87,HR,Yes,RCT-DUPLICATE 2023
+DECLARE-TIMI58,Dapagliflozin,T2D cardiovascular,0.83,0.73,0.95,0.69,0.59,0.81,HR,Partial,RCT-DUPLICATE 2023
+EMPA-REG,Empagliflozin,T2D cardiovascular,0.86,0.74,0.99,0.83,0.73,0.95,HR,Yes,RCT-DUPLICATE 2023
+CANVAS,Canagliflozin,T2D cardiovascular,0.86,0.75,0.97,0.77,0.70,0.85,HR,Yes,RCT-DUPLICATE 2023
+CARMELINA,Linagliptin,T2D cardiovascular,1.02,0.89,1.17,0.90,0.84,0.96,HR,Yes,RCT-DUPLICATE 2023
+TECOS,Sitagliptin,T2D cardiovascular,0.98,0.88,1.09,0.89,0.86,0.91,HR,Yes,RCT-DUPLICATE 2023
+SAVOR-TIMI,Saxagliptin,T2D cardiovascular,1.00,0.89,1.12,0.81,0.76,0.86,HR,No,RCT-DUPLICATE 2023
+TRITON-TIMI 38,Prasugrel,ACS cardiovascular,0.81,0.73,0.90,0.88,0.79,0.97,HR,Yes,RCT-DUPLICATE 2023
+PLATO,Ticagrelor,ACS cardiovascular,0.84,0.77,0.92,0.92,0.83,1.02,HR,Partial,RCT-DUPLICATE 2023
+ARISTOTLE,Apixaban,Atrial fibrillation,0.79,0.66,0.95,0.68,0.61,0.76,HR,Yes,RCT-DUPLICATE 2023
+RE-LY,Dabigatran,Atrial fibrillation,0.66,0.53,0.82,0.73,0.60,0.90,HR,Yes,RCT-DUPLICATE 2023
+ROCKET AF,Rivaroxaban,Atrial fibrillation,0.79,0.66,0.96,0.70,0.62,0.80,HR,Yes,RCT-DUPLICATE 2023
+EINSTEIN DVT,Rivaroxaban,DVT,0.68,0.44,1.04,0.75,0.62,0.90,HR,Yes,RCT-DUPLICATE 2023
+EINSTEIN PE,Rivaroxaban,Pulmonary embolism,1.12,0.75,1.68,0.67,0.55,0.80,HR,No,RCT-DUPLICATE 2023
+RE-COVER II,Dabigatran,VTE recurrence,1.08,0.64,1.80,1.15,0.74,1.78,HR,Yes,RCT-DUPLICATE 2023
+AMPLIFY,Apixaban,VTE,0.84,0.60,1.18,0.81,0.54,1.23,HR,Yes,RCT-DUPLICATE 2023
+RECORD1,Rivaroxaban,Post-op VTE,0.25,0.14,0.47,0.17,0.10,0.29,HR,Yes,RCT-DUPLICATE 2023
+TRANSCEND,Telmisartan,Hypertension outcomes,0.92,0.81,1.05,0.88,0.81,0.96,HR,Partial,RCT-DUPLICATE 2023
+ONTARGET,Telmisartan vs ramipril,Hypertension outcomes,1.01,0.94,1.09,0.83,0.77,0.90,HR,No,RCT-DUPLICATE 2023
+HORIZON-PFT,Zoledronic acid,Osteoporosis,0.59,0.42,0.83,0.72,0.55,0.94,HR,Yes,RCT-DUPLICATE 2023
+DAPA-CKD,Dapagliflozin,CKD progression,0.61,0.51,0.72,0.80,0.52,1.26,HR,No,RCT-DUPLICATE 2023
+PARADIGM-HF,Sacubitril/valsartan,Heart failure,0.80,0.73,0.87,1.02,0.91,1.14,HR,No,RCT-DUPLICATE 2023
+P04334,Tiotropium/olodaterol,COPD,0.56,0.44,0.72,0.78,0.62,0.97,HR,Partial,RCT-DUPLICATE 2023
+D5896,Fluticasone/umeclidinium,COPD,1.07,0.70,1.65,1.38,0.90,2.13,HR,Yes,RCT-DUPLICATE 2023
+IMPACT,Tiotropium/olodaterol/fluticasone,COPD,0.85,0.80,0.90,1.13,1.04,1.23,HR,No,RCT-DUPLICATE 2023
+POET-COPD,Budesonide/formoterol,COPD,0.83,0.77,0.90,1.02,0.93,1.12,HR,No,RCT-DUPLICATE 2023
+INSPIRE,Fluticasone/umeclidinium/vilanterol,Asthma,0.97,0.84,1.12,0.93,0.90,0.96,HR,Yes,RCT-DUPLICATE 2023
+CAROLINA,Linagliptin vs glimepiride,T2D cardiovascular,0.98,0.84,1.14,0.91,0.79,1.05,HR,Yes,RCT-DUPLICATE 2023
+PRONOUNCE,Degarelix vs leuprolide,Prostate cancer cardiovascular,1.28,0.59,2.79,1.35,0.94,1.93,HR,Yes,RCT-DUPLICATE 2023

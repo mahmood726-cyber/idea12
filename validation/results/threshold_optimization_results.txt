@@ -1,0 +1,38 @@
+================================================================================
+FORENSIC FRAMEWORK: THRESHOLD OPTIMIZATION RESULTS
+================================================================================
+
+ROC ANALYSIS
+--------------------------------------------------------------------------------
+ROC AUC: 0.900
+Optimal Threshold (Youden): 3.86
+  Sensitivity: 70.0%
+  Specificity: 100.0%
+
+RECOMMENDED THRESHOLDS
+--------------------------------------------------------------------------------
+ROC-Optimized:
+  Grade A: DI < 1.55
+  Grade B: 1.55 <= DI < 3.86
+  Grade C: DI >= 3.86
+
+PERFORMANCE COMPARISON
+--------------------------------------------------------------------------------
+current:
+  Threshold: 2.00
+  Sensitivity: 90.0%
+  Specificity: 80.0%
+  Accuracy: 86.7%
+
+roc_optimized:
+  Threshold: 3.86
+  Sensitivity: 70.0%
+  Specificity: 100.0%
+  Accuracy: 80.0%
+
+distribution_based:
+  Threshold: 4.01
+  Sensitivity: 50.0%
+  Specificity: 100.0%
+  Accuracy: 66.7%
+

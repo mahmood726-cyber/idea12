@@ -1,0 +1,6 @@
+topic,rct_effect,rct_ci_lower,rct_ci_upper,rct_n_studies,rct_n_subjects,obs_effect,obs_ci_lower,obs_ci_upper,obs_n_studies,obs_n_subjects,outcome_type,obs_design,source
+BCG Vaccine & Tuberculosis,0.49,0.34,0.70,13,359922,0.50,0.39,0.65,10,6511,RR,case-control,Concato 2000 NEJM
+Mammography & Breast Cancer Mortality,0.79,0.71,0.88,8,429043,0.61,0.49,0.77,4,132456,RR,case-control,Concato 2000 NEJM
+Cholesterol Levels & Trauma Deaths,1.42,0.94,2.15,6,36910,1.40,1.14,1.66,14,9377,RR,cohort,Concato 2000 NEJM
+Hypertension Treatment & Stroke,0.58,0.50,0.67,14,36894,0.62,0.60,0.65,7,405511,RR,cohort,Concato 2000 NEJM
+Hypertension Treatment & Coronary Heart Disease,0.86,0.78,0.96,14,36894,0.77,0.75,0.80,9,418343,RR,cohort,Concato 2000 NEJM

@@ -1,0 +1,8 @@
+biomarker,obs_effect,obs_ci_lower,obs_ci_upper,rct_effect,rct_ci_lower,rct_ci_upper,outcome_type,source
+C-Reactive Protein (per 1 SD),1.44,1.32,1.56,1.17,1.03,1.34,RR,Ioannidis 2011 BMJ
+Non-HDL Cholesterol (per 1 SD),1.54,1.42,1.67,1.27,1.14,1.42,RR,Ioannidis 2011 BMJ
+Lipoprotein(a) (per 1 SD),1.15,1.10,1.21,1.03,0.96,1.11,RR,Ioannidis 2011 BMJ
+Post-Load Glucose (per unit),1.06,1.04,1.09,1.02,0.99,1.05,RR,Ioannidis 2011 BMJ
+Fibrinogen (per unit),2.74,2.40,3.13,1.60,1.43,1.78,RR,Ioannidis 2011 BMJ
+B-Type Natriuretic Peptide (top vs bottom third),3.05,2.48,3.77,2.15,1.78,2.61,RR,Ioannidis 2011 BMJ
+Troponin T/I (positive vs negative),10.05,4.89,20.66,3.30,2.05,5.31,RR,Ioannidis 2011 BMJ

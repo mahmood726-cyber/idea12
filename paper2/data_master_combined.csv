@@ -1,0 +1,42 @@
+source,topic_intervention,condition_domain,obs_effect,obs_ci_lower,obs_ci_upper,rct_effect,rct_ci_lower,rct_ci_upper,outcome_type,obs_n_studies,rct_n_studies
+Ioannidis 2011 BMJ,C-Reactive Protein (per 1 SD),Cardiovascular biomarker,1.44,1.32,1.56,1.17,1.03,1.34,RR,NA,NA
+Ioannidis 2011 BMJ,Non-HDL Cholesterol (per 1 SD),Cardiovascular biomarker,1.54,1.42,1.67,1.27,1.14,1.42,RR,NA,NA
+Ioannidis 2011 BMJ,Lipoprotein(a) (per 1 SD),Cardiovascular biomarker,1.15,1.10,1.21,1.03,0.96,1.11,RR,NA,NA
+Ioannidis 2011 BMJ,Post-Load Glucose (per unit),Cardiovascular biomarker,1.06,1.04,1.09,1.02,0.99,1.05,RR,NA,NA
+Ioannidis 2011 BMJ,Fibrinogen (per unit),Cardiovascular biomarker,2.74,2.40,3.13,1.60,1.43,1.78,RR,NA,NA
+Ioannidis 2011 BMJ,B-Type Natriuretic Peptide (top vs bottom third),Cardiovascular biomarker,3.05,2.48,3.77,2.15,1.78,2.61,RR,NA,NA
+Ioannidis 2011 BMJ,Troponin T/I (positive vs negative),Cardiovascular biomarker,10.05,4.89,20.66,3.30,2.05,5.31,RR,NA,NA
+Concato 2000 NEJM,BCG Vaccine & Tuberculosis,Infectious disease,0.50,0.39,0.65,0.49,0.34,0.70,OR/RR,10,13
+Concato 2000 NEJM,Mammography & Breast Cancer Mortality,Cancer screening,0.61,0.49,0.77,0.79,0.71,0.88,OR/RR,4,8
+Concato 2000 NEJM,Cholesterol Levels & Trauma Deaths,Cardiovascular,1.40,1.14,1.66,1.42,0.94,2.15,HR/RR,14,6
+Concato 2000 NEJM,Hypertension Treatment & Stroke,Cardiovascular,0.62,0.60,0.65,0.58,0.50,0.67,RR,7,14
+Concato 2000 NEJM,Hypertension Treatment & Coronary Heart Disease,Cardiovascular,0.77,0.75,0.80,0.86,0.78,0.96,RR,9,14
+RCT-DUPLICATE 2023,Liraglutide (LEADER),T2D cardiovascular,0.82,0.76,0.87,0.87,0.78,0.97,HR,NA,NA
+RCT-DUPLICATE 2023,Dapagliflozin (DECLARE-TIMI58),T2D cardiovascular,0.69,0.59,0.81,0.83,0.73,0.95,HR,NA,NA
+RCT-DUPLICATE 2023,Empagliflozin (EMPA-REG),T2D cardiovascular,0.83,0.73,0.95,0.86,0.74,0.99,HR,NA,NA
+RCT-DUPLICATE 2023,Canagliflozin (CANVAS),T2D cardiovascular,0.77,0.70,0.85,0.86,0.75,0.97,HR,NA,NA
+RCT-DUPLICATE 2023,Linagliptin (CARMELINA),T2D cardiovascular,0.90,0.84,0.96,1.02,0.89,1.17,HR,NA,NA
+RCT-DUPLICATE 2023,Sitagliptin (TECOS),T2D cardiovascular,0.89,0.86,0.91,0.98,0.88,1.09,HR,NA,NA
+RCT-DUPLICATE 2023,Saxagliptin (SAVOR-TIMI),T2D cardiovascular,0.81,0.76,0.86,1.00,0.89,1.12,HR,NA,NA
+RCT-DUPLICATE 2023,Prasugrel (TRITON-TIMI 38),ACS cardiovascular,0.88,0.79,0.97,0.81,0.73,0.90,HR,NA,NA
+RCT-DUPLICATE 2023,Ticagrelor (PLATO),ACS cardiovascular,0.92,0.83,1.02,0.84,0.77,0.92,HR,NA,NA
+RCT-DUPLICATE 2023,Apixaban (ARISTOTLE),Atrial fibrillation,0.68,0.61,0.76,0.79,0.66,0.95,HR,NA,NA
+RCT-DUPLICATE 2023,Dabigatran (RE-LY),Atrial fibrillation,0.73,0.60,0.90,0.66,0.53,0.82,HR,NA,NA
+RCT-DUPLICATE 2023,Rivaroxaban (ROCKET AF),Atrial fibrillation,0.70,0.62,0.80,0.79,0.66,0.96,HR,NA,NA
+RCT-DUPLICATE 2023,Rivaroxaban (EINSTEIN DVT),DVT,0.75,0.62,0.90,0.68,0.44,1.04,HR,NA,NA
+RCT-DUPLICATE 2023,Rivaroxaban (EINSTEIN PE),Pulmonary embolism,0.67,0.55,0.80,1.12,0.75,1.68,HR,NA,NA
+RCT-DUPLICATE 2023,Dabigatran (RE-COVER II),VTE recurrence,1.15,0.74,1.78,1.08,0.64,1.80,HR,NA,NA
+RCT-DUPLICATE 2023,Apixaban (AMPLIFY),VTE,0.81,0.54,1.23,0.84,0.60,1.18,HR,NA,NA
+RCT-DUPLICATE 2023,Rivaroxaban (RECORD1),Post-op VTE,0.17,0.10,0.29,0.25,0.14,0.47,HR,NA,NA
+RCT-DUPLICATE 2023,Telmisartan (TRANSCEND),Hypertension,0.88,0.81,0.96,0.92,0.81,1.05,HR,NA,NA
+RCT-DUPLICATE 2023,Telmisartan vs ramipril (ONTARGET),Hypertension,0.83,0.77,0.90,1.01,0.94,1.09,HR,NA,NA
+RCT-DUPLICATE 2023,Zoledronic acid (HORIZON-PFT),Osteoporosis,0.72,0.55,0.94,0.59,0.42,0.83,HR,NA,NA
+RCT-DUPLICATE 2023,Dapagliflozin (DAPA-CKD),CKD progression,0.80,0.52,1.26,0.61,0.51,0.72,HR,NA,NA
+RCT-DUPLICATE 2023,Sacubitril/valsartan (PARADIGM-HF),Heart failure,1.02,0.91,1.14,0.80,0.73,0.87,HR,NA,NA
+RCT-DUPLICATE 2023,Tiotropium/olodaterol (P04334),COPD,0.78,0.62,0.97,0.56,0.44,0.72,HR,NA,NA
+RCT-DUPLICATE 2023,Fluticasone/umeclidinium (D5896),COPD,1.38,0.90,2.13,1.07,0.70,1.65,HR,NA,NA
+RCT-DUPLICATE 2023,Tio/olo/flu (IMPACT),COPD,1.13,1.04,1.23,0.85,0.80,0.90,HR,NA,NA
+RCT-DUPLICATE 2023,Budesonide/formoterol (POET-COPD),COPD,1.02,0.93,1.12,0.83,0.77,0.90,HR,NA,NA
+RCT-DUPLICATE 2023,Flu/umec/vilan (INSPIRE),Asthma,0.93,0.90,0.96,0.97,0.84,1.12,HR,NA,NA
+RCT-DUPLICATE 2023,Linagliptin vs glimepiride (CAROLINA),T2D cardiovascular,0.91,0.79,1.05,0.98,0.84,1.14,HR,NA,NA
+RCT-DUPLICATE 2023,Degarelix vs leuprolide (PRONOUNCE),Prostate cancer,1.35,0.94,1.93,1.28,0.59,2.79,HR,NA,NA

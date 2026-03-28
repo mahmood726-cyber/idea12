@@ -1,0 +1,61 @@
+================================================================================
+MEDICAL REVERSAL VALIDATION STUDY
+Forensic Meta-Analysis Framework
+================================================================================
+
+Date: 2025-11-20 12:25:19
+Total Cases: 15
+  Medical Reversals: 10
+  Concordant Cases: 5
+
+OVERALL PERFORMANCE
+--------------------------------------------------------------------------------
+  Correct Classifications: 12/15 (80.0%)
+
+  Sensitivity (Reversals Detected): 10/10 (100.0%)
+  Specificity (Concordant Correct): 2/5 (40.0%)
+
+DETAILED RESULTS: MEDICAL REVERSALS
+--------------------------------------------------------------------------------
+Domain                                  DI  E-Val      Grade    Verdict
+--------------------------------------------------------------------------------
+Hormone Replacement Therapy           4.04   0.00    Grade C    CORRECT
+Vitamin E Supplementation             5.05   0.00    Grade C    CORRECT
+Beta-Blockers                         1.04   0.00    Grade B    CORRECT
+Beta-Carotene Supplementation         5.82   0.00    Grade C    CORRECT
+Aspirin Primary Prevention            4.38   0.00    Grade C    CORRECT
+Rosiglitazone                         2.43   0.00    Grade C    CORRECT
+Calcium Supplementation               3.97   0.00    Grade C    CORRECT
+Tight Glucose Control                 3.86   0.00    Grade C    CORRECT
+Albumin for Fluid Resuscitation       2.66   0.00    Grade C    CORRECT
+Erythropoietin (High Target Hb)       5.63   0.00    Grade C    CORRECT
+
+DETAILED RESULTS: CONCORDANT CASES
+--------------------------------------------------------------------------------
+Domain                                  DI      Grade    Verdict
+--------------------------------------------------------------------------------
+Statins                               1.44    Grade B     MISSED
+Beta-Blockers                         0.33    Grade A    CORRECT
+ACE Inhibitors                        1.42    Grade B     MISSED
+Anticoagulation                       3.52    Grade C     MISSED
+Smoking Cessation                     0.06    Grade A    CORRECT
+
+KEY FINDINGS
+================================================================================
+1. Average Discordance Index:
+   Medical Reversals:  DI = 3.89
+   Concordant Cases:   DI = 1.35
+   Difference:        2.54
+
+2. Grade Distribution:
+   Grade A:
+     Reversals:  0.0%
+     Concordant: 40.0%
+   Grade B:
+     Reversals:  10.0%
+     Concordant: 40.0%
+   Grade C:
+     Reversals:  90.0%
+     Concordant: 20.0%
+
+================================================================================

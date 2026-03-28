@@ -1,0 +1,31 @@
+{
+  "n_iterations": 100,
+  "seed": 42,
+  "scenarios": [
+    {
+      "name": "No_Bias",
+      "true_rct_hr": 0.9,
+      "true_obs_hr": 0.9,
+      "tau_sq": 0.04
+    },
+    {
+      "name": "Weak_Bias",
+      "true_rct_hr": 0.95,
+      "true_obs_hr": 0.85,
+      "tau_sq": 0.04
+    },
+    {
+      "name": "Moderate_Bias",
+      "true_rct_hr": 1.0,
+      "true_obs_hr": 0.8,
+      "tau_sq": 0.04
+    },
+    {
+      "name": "Strong_Bias",
+      "true_rct_hr": 1.2,
+      "true_obs_hr": 0.7,
+      "tau_sq": 0.04
+    }
+  ],
+  "timestamp": "2025-11-20T10:27:21.453590"
+}

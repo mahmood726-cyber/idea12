@@ -1,0 +1,40 @@
+================================================================================
+FORENSIC FRAMEWORK: EXPANDED VALIDATION (N=25 TOTAL)
+================================================================================
+
+Date: 2025-11-20 19:31:12
+Total Cases: 25
+  Medical Reversals: 10
+  Concordant Cases: 15
+
+PERFORMANCE METRICS
+--------------------------------------------------------------------------------
+Sensitivity (Reversals Detected): 100.0% (10/10)
+Specificity (Concordant Correct): 80.0% (12/15)
+Specificity 95% CI: (59.8% - 100.0%)
+CI Width: ±20.1%
+Overall Accuracy: 88.0%
+
+DOMAIN DIVERSITY
+--------------------------------------------------------------------------------
+Beta-Blockers: 2 cases
+Pulmonology: 2 cases
+Endocrine: 2 cases
+Rheumatology: 2 cases
+Hormone Replacement Therapy: 1 cases
+Aspirin Primary Prevention: 1 cases
+Beta-Carotene Supplementation: 1 cases
+Vitamin E Supplementation: 1 cases
+Rosiglitazone: 1 cases
+Erythropoietin (High Target Hb): 1 cases
+Calcium Supplementation: 1 cases
+Tight Glucose Control: 1 cases
+Albumin for Fluid Resuscitation: 1 cases
+Anticoagulation: 1 cases
+ACE Inhibitors: 1 cases
+Statins: 1 cases
+Smoking Cessation: 1 cases
+Neurology: 1 cases
+Gastroenterology: 1 cases
+Cardiology: 1 cases
+Critical Care: 1 cases

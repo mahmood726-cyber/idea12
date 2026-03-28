@@ -1,0 +1,129 @@
+Warning: Forensic module not available. Running simulation only.
+================================================================================
+FORENSIC META-ANALYSIS: VALIDATION SIMULATION STUDY
+================================================================================
+
+Running 4 scenarios × 1000 iterations = 4000 total
+Estimated time: ~3.3 minutes
+
+
+================================================================================
+Scenario: No_Bias
+  True RCT HR: 0.90
+  True Obs HR: 0.90
+  Expected DI range: (0.0, 1.0)
+================================================================================
+
+Scenario: No_Bias:   0%|          | 0/1000 [00:00<?, ?it/s]Scenario: No_Bias:   5%|5         | 52/1000 [00:00<00:01, 513.25it/s]Scenario: No_Bias:  10%|#         | 104/1000 [00:00<00:01, 512.79it/s]Scenario: No_Bias:  16%|#5        | 157/1000 [00:00<00:01, 516.34it/s]Scenario: No_Bias:  21%|##1       | 211/1000 [00:00<00:01, 524.09it/s]Scenario: No_Bias:  26%|##6       | 264/1000 [00:00<00:01, 495.22it/s]Scenario: No_Bias:  32%|###1      | 317/1000 [00:00<00:01, 505.83it/s]Scenario: No_Bias:  37%|###6      | 368/1000 [00:00<00:01, 501.89it/s]Scenario: No_Bias:  43%|####2     | 426/1000 [00:00<00:01, 524.54it/s]Scenario: No_Bias:  48%|####7     | 479/1000 [00:00<00:00, 524.19it/s]Scenario: No_Bias:  53%|#####3    | 532/1000 [00:01<00:00, 521.89it/s]Scenario: No_Bias:  59%|#####8    | 590/1000 [00:01<00:00, 537.07it/s]Scenario: No_Bias:  65%|######4   | 648/1000 [00:01<00:00, 548.00it/s]Scenario: No_Bias:  71%|#######   | 709/1000 [00:01<00:00, 563.20it/s]Scenario: No_Bias:  77%|#######6  | 767/1000 [00:01<00:00, 565.94it/s]Scenario: No_Bias:  82%|########2 | 824/1000 [00:01<00:00, 539.01it/s]Scenario: No_Bias:  88%|########7 | 879/1000 [00:01<00:00, 518.38it/s]Scenario: No_Bias:  94%|#########3| 936/1000 [00:01<00:00, 532.63it/s]Scenario: No_Bias:  99%|#########9| 990/1000 [00:01<00:00, 525.73it/s]Scenario: No_Bias: 100%|##########| 1000/1000 [00:01<00:00, 526.00it/s]
+
+Saved raw data to: validation/results_full\No_Bias_raw.csv
+
+Results for No_Bias:
+  DI: 3.78 ± 2.88
+  Grades: A=18.1%, B=14.5%, C=67.4%
+  E-value: 1.49 ± 0.25
+  E-value bias: 0.49, RMSE: 0.55
+  Inflation: 1.0x ± 0.0x
+
+================================================================================
+Scenario: Weak_Bias
+  True RCT HR: 0.95
+  True Obs HR: 0.85
+  Expected DI range: (0.8, 1.5)
+================================================================================
+
+Scenario: Weak_Bias:   0%|          | 0/1000 [00:00<?, ?it/s]Scenario: Weak_Bias:   4%|3         | 37/1000 [00:00<00:02, 366.75it/s]Scenario: Weak_Bias:   9%|8         | 86/1000 [00:00<00:02, 436.34it/s]Scenario: Weak_Bias:  14%|#3        | 139/1000 [00:00<00:01, 476.20it/s]Scenario: Weak_Bias:  19%|#9        | 190/1000 [00:00<00:01, 487.68it/s]Scenario: Weak_Bias:  24%|##3       | 239/1000 [00:00<00:01, 464.09it/s]Scenario: Weak_Bias:  29%|##8       | 288/1000 [00:00<00:01, 469.77it/s]Scenario: Weak_Bias:  34%|###3      | 336/1000 [00:00<00:01, 459.25it/s]Scenario: Weak_Bias:  39%|###9      | 394/1000 [00:00<00:01, 494.64it/s]Scenario: Weak_Bias:  45%|####5     | 452/1000 [00:00<00:01, 518.59it/s]Scenario: Weak_Bias:  52%|#####1    | 515/1000 [00:01<00:00, 549.96it/s]Scenario: Weak_Bias:  58%|#####8    | 581/1000 [00:01<00:00, 582.94it/s]Scenario: Weak_Bias:  64%|######4   | 640/1000 [00:01<00:00, 573.60it/s]Scenario: Weak_Bias:  70%|#######   | 705/1000 [00:01<00:00, 595.24it/s]Scenario: Weak_Bias:  77%|#######7  | 770/1000 [00:01<00:00, 608.89it/s]Scenario: Weak_Bias:  84%|########3 | 837/1000 [00:01<00:00, 625.42it/s]Scenario: Weak_Bias:  90%|######### | 900/1000 [00:01<00:00, 623.43it/s]Scenario: Weak_Bias:  96%|#########6| 963/1000 [00:01<00:00, 601.36it/s]Scenario: Weak_Bias: 100%|##########| 1000/1000 [00:01<00:00, 545.31it/s]
+
+Saved raw data to: validation/results_full\Weak_Bias_raw.csv
+
+Results for Weak_Bias:
+  DI: 4.57 ± 3.37
+  Grades: A=14.0%, B=12.2%, C=73.8%
+  E-value: 1.63 ± 0.28
+  E-value bias: 0.51, RMSE: 0.58
+  Inflation: 1.0x ± 0.0x
+
+================================================================================
+Scenario: Moderate_Bias
+  True RCT HR: 1.00
+  True Obs HR: 0.80
+  Expected DI range: (1.5, 2.5)
+================================================================================
+
+Scenario: Moderate_Bias:   0%|          | 0/1000 [00:00<?, ?it/s]Scenario: Moderate_Bias:   6%|5         | 55/1000 [00:00<00:01, 542.60it/s]Scenario: Moderate_Bias:  11%|#1        | 111/1000 [00:00<00:01, 545.88it/s]Scenario: Moderate_Bias:  17%|#6        | 166/1000 [00:00<00:01, 541.98it/s]Scenario: Moderate_Bias:  22%|##2       | 221/1000 [00:00<00:01, 513.15it/s]Scenario: Moderate_Bias:  28%|##8       | 283/1000 [00:00<00:01, 547.80it/s]Scenario: Moderate_Bias:  34%|###4      | 345/1000 [00:00<00:01, 569.24it/s]Scenario: Moderate_Bias:  41%|####1     | 411/1000 [00:00<00:00, 596.30it/s]Scenario: Moderate_Bias:  48%|####7     | 476/1000 [00:00<00:00, 612.32it/s]Scenario: Moderate_Bias:  54%|#####3    | 538/1000 [00:00<00:00, 608.63it/s]Scenario: Moderate_Bias:  60%|######    | 601/1000 [00:01<00:00, 614.00it/s]Scenario: Moderate_Bias:  67%|######6   | 667/1000 [00:01<00:00, 627.68it/s]Scenario: Moderate_Bias:  74%|#######3  | 737/1000 [00:01<00:00, 647.57it/s]Scenario: Moderate_Bias:  80%|########  | 805/1000 [00:01<00:00, 656.61it/s]Scenario: Moderate_Bias:  87%|########7 | 871/1000 [00:01<00:00, 653.47it/s]Scenario: Moderate_Bias:  94%|#########3| 938/1000 [00:01<00:00, 656.45it/s]Scenario: Moderate_Bias: 100%|##########| 1000/1000 [00:01<00:00, 610.60it/s]
+
+Saved raw data to: validation/results_full\Moderate_Bias_raw.csv
+
+Results for Moderate_Bias:
+  DI: 6.73 ± 4.16
+  Grades: A=6.9%, B=6.3%, C=86.8%
+  E-value: 1.80 ± 0.29
+  E-value bias: 0.55, RMSE: 0.63
+  Inflation: 1.0x ± 0.0x
+
+================================================================================
+Scenario: Strong_Bias
+  True RCT HR: 1.20
+  True Obs HR: 0.70
+  Expected DI range: (3.0, 5.0)
+================================================================================
+
+Scenario: Strong_Bias:   0%|          | 0/1000 [00:00<?, ?it/s]Scenario: Strong_Bias:   6%|5         | 58/1000 [00:00<00:01, 573.80it/s]Scenario: Strong_Bias:  12%|#2        | 121/1000 [00:00<00:01, 605.69it/s]Scenario: Strong_Bias:  18%|#8        | 182/1000 [00:00<00:01, 590.31it/s]Scenario: Strong_Bias:  24%|##4       | 245/1000 [00:00<00:01, 604.73it/s]Scenario: Strong_Bias:  31%|###1      | 310/1000 [00:00<00:01, 619.99it/s]Scenario: Strong_Bias:  38%|###7      | 377/1000 [00:00<00:00, 636.47it/s]Scenario: Strong_Bias:  44%|####4     | 444/1000 [00:00<00:00, 646.47it/s]Scenario: Strong_Bias:  51%|#####1    | 512/1000 [00:00<00:00, 654.43it/s]Scenario: Strong_Bias:  58%|#####7    | 578/1000 [00:00<00:00, 654.17it/s]Scenario: Strong_Bias:  64%|######4   | 644/1000 [00:01<00:00, 653.15it/s]Scenario: Strong_Bias:  71%|#######1  | 710/1000 [00:01<00:00, 654.99it/s]Scenario: Strong_Bias:  78%|#######7  | 778/1000 [00:01<00:00, 659.85it/s]Scenario: Strong_Bias:  84%|########4 | 844/1000 [00:01<00:00, 635.53it/s]Scenario: Strong_Bias:  91%|######### | 908/1000 [00:01<00:00, 631.37it/s]Scenario: Strong_Bias:  97%|#########7| 972/1000 [00:01<00:00, 628.25it/s]Scenario: Strong_Bias: 100%|##########| 1000/1000 [00:01<00:00, 635.29it/s]
+
+Saved raw data to: validation/results_full\Strong_Bias_raw.csv
+
+Results for Strong_Bias:
+  DI: 15.40 ± 4.74
+  Grades: A=0.1%, B=0.0%, C=99.9%
+  E-value: 2.21 ± 0.31
+  E-value bias: 0.50, RMSE: 0.59
+  Inflation: 1.0x ± 0.0x
+
+================================================================================
+Summary saved to: validation/results_full\simulation_summary.csv
+================================================================================
+
+================================================================================
+FORENSIC META-ANALYSIS FRAMEWORK: VALIDATION RESULTS
+================================================================================
+
+Date: 2025-11-20 10:40:55
+Iterations per scenario: 1000
+
+TABLE 1: Discordance Index Performance
+--------------------------------------------------------------------------------
+Scenario                Mean DI       SD   Grade A%   Grade B%   Grade C%
+--------------------------------------------------------------------------------
+No_Bias                    3.78     2.88       18.1       14.5       67.4
+Weak_Bias                  4.57     3.37       14.0       12.2       73.8
+Moderate_Bias              6.73     4.16        6.9        6.3       86.8
+Strong_Bias               15.40     4.74        0.1        0.0       99.9
+--------------------------------------------------------------------------------
+
+TABLE 2: E-Value Calibration
+--------------------------------------------------------------------------------
+Scenario                  E-Value       Bias       RMSE
+--------------------------------------------------------------------------------
+No_Bias                      1.49       0.49       0.55
+Weak_Bias                    1.63       0.51       0.58
+Moderate_Bias                1.80       0.55       0.63
+Strong_Bias                  2.21       0.50       0.59
+--------------------------------------------------------------------------------
+
+INTERPRETATION:
+--------------------------------------------------------------------------------
+1. Type I Error (No Bias scenario):
+   Grade C assigned: 67.4% (target: <5%)
+   Status: FAIL
+
+2. Sensitivity (Strong Bias scenario):
+   Grade C assigned: 99.9% (target: >90%)
+   Status: PASS
+
+================================================================================
+
+Report saved to: validation/results_full\VALIDATION_REPORT.txt
+
+================================================================================
+VALIDATION COMPLETE
+================================================================================
