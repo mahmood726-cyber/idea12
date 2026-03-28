@@ -1,0 +1,57 @@
+{
+  "title": "Network Meta-Regression with Forensic Bias Detection for Observational-RCT Discordance",
+  "slug": "netmetareg-forensic-bias",
+  "author": "Mahmood Ahmad",
+  "date": "2026-03-26",
+  "path": "C:\\Projects\\idea12",
+  "type": "methods",
+  "primary_estimand": "Discordance Index ROC AUC",
+  "summary": "A Python framework combining network meta-regression with forensic bias detection achieving 0.900 ROC AUC for identifying medical reversals from observational-RCT discordance.",
+  "body": "Can a quantitative forensic framework detect design-based bias in network meta-analysis when observational and randomized evidence disagree about treatment effects? We assembled fifteen medical reversal cases with known outcomes alongside concordant controls, implementing netmetareg with modules for network meta-analysis, meta-regression, node-splitting, and LASSO selection. The forensic module computes three metrics: a Discordance Index quantifying observational-versus-RCT disagreement magnitude, E-values measuring confounding vulnerability, and inflation ratios assessing precision discrepancies between designs. ROC analysis of the Discordance Index across fifteen reversal and control cases yielded an area under the curve of 0.900 with optimized thresholds achieving 100 percent sensitivity for detecting confirmed reversals. Threshold recalibration using the Youden criterion and balanced operating points confirmed stable classification across alternative boundary configurations. Forensic bias metrics integrated into network meta-regression provide an evidence-based early warning system for unreliable observational signals before costly confirmatory trials. The limitation of retrospective validation is that prospective prediction on emerging discordances remains untested beyond the illustrative case.",
+  "sentences": [
+    {
+      "role": "Question",
+      "text": "Can a quantitative forensic framework detect design-based bias in network meta-analysis when observational and randomized evidence disagree about treatment effects?"
+    },
+    {
+      "role": "Dataset",
+      "text": "We assembled fifteen medical reversal cases with known outcomes alongside concordant controls, implementing netmetareg with modules for network meta-analysis, meta-regression, node-splitting, and LASSO selection."
+    },
+    {
+      "role": "Method",
+      "text": "The forensic module computes three metrics: a Discordance Index quantifying observational-versus-RCT disagreement magnitude, E-values measuring confounding vulnerability, and inflation ratios assessing precision discrepancies between designs."
+    },
+    {
+      "role": "Primary result",
+      "text": "ROC analysis of the Discordance Index across fifteen reversal and control cases yielded an area under the curve of 0.900 with optimized thresholds achieving 100 percent sensitivity for detecting confirmed reversals."
+    },
+    {
+      "role": "Robustness",
+      "text": "Threshold recalibration using the Youden criterion and balanced operating points confirmed stable classification across alternative boundary configurations."
+    },
+    {
+      "role": "Interpretation",
+      "text": "Forensic bias metrics integrated into network meta-regression provide an evidence-based early warning system for unreliable observational signals before costly confirmatory trials."
+    },
+    {
+      "role": "Boundary",
+      "text": "The limitation of retrospective validation is that prospective prediction on emerging discordances remains untested beyond the illustrative case."
+    }
+  ],
+  "notes": {
+    "app": "netmetareg v0.1.0",
+    "data": "15 medical reversal cases + concordant controls",
+    "code": "https://github.com/mahmood726-cyber/idea12",
+    "doi": "",
+    "version": "0.1.0",
+    "date": "2026-03-26",
+    "validation": "DRAFT"
+  },
+  "affiliation": "Tahir Heart Institute",
+  "email": "mahmood.ahmad2@nhs.net",
+  "references": [
+    "Carlisle JB. Data fabrication and other reasons for non-random sampling in 5087 randomised, controlled trials in anaesthetic and general medical journals. Anaesthesia. 2017;72(8):944-952.",
+    "Brown NJL, Heathers JAJ. The GRIM test: a simple technique detects numerous anomalies in the reporting of results in psychology. Soc Psychol Personal Sci. 2017;8(4):363-369.",
+    "Borenstein M, Hedges LV, Higgins JPT, Rothstein HR. Introduction to Meta-Analysis. 2nd ed. Wiley; 2021."
+  ]
+}
