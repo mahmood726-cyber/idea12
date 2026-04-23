@@ -1,157 +1,159 @@
-Note: Running in standalone mode. Full module not imported.
-================================================================================
-FORENSIC META-ANALYSIS: Beta-Blockers in HFpEF
-The Case of the 'Big Data Mirage'
-================================================================================
+sentinel:skip-file — hardcoded paths are fixture/registry/audit-narrative data for this repo's research workflow, not portable application configuration. Same pattern as push_all_repos.py and E156 workbook files.
 
-================================================================================
-1. DATA PREPARATION
-================================================================================
-
-Observational Studies:
-             study  year   hr     n
-Bavishi (Obs Meta)  2015 0.81 27099
-    Liu (Obs Meta)  2014 0.91 21206
- SwedeHF (Matched)  2014 0.93 19083
-
-Total Observational N: 67,388
-
-Randomized Controlled Trials:
-            study  year   hr     n
-    REBOOT (2024)  2024 0.97 17801
-REDUCE-AMI (2024)  2024 0.96  5020
-    SENIORS (Sub)  2005 0.81   752
-     J-DHF (2013)  2013 0.90   245
-
-Total RCT N: 23,818
-
-================================================================================
-2. TRADITIONAL POOLED ESTIMATES
-================================================================================
-
-Observational Studies (Pooled):
-  HR: 0.904 (95% CI: 0.872-0.937)
-  Interpretation: Observational data suggests 10% mortality reduction
-  Statistical significance: YES (p < 0.001)
-  Sample size: 67,388 patients
-
-Randomized Controlled Trials (Pooled):
-  HR: 0.946 (95% CI: 0.870-1.030)
-  Interpretation: RCTs show NO significant benefit
-  Statistical significance: NO (p = 0.54)
-  Sample size: 23,818 patients
-
-NAIVE CONCLUSION:
-  'Massive observational data (67k patients) shows benefit,
-   while smaller RCTs (24k patients) are inconclusive.'
-   => Should we trust the bigger sample size?
-
-================================================================================
-3. FORENSIC BIAS DETECTION
-================================================================================
-
---- METRIC 1: DISCORDANCE INDEX ---
-  Observational Effect: -0.1015
-  RCT Effect: -0.0550
-  Absolute Difference: 0.0464
-  Combined SE: 0.0468
-
-  Discordance Index (DI): 0.99
-
-  Evidence Grade: Grade A (Trust Pooled)
-  Interpretation: Low conflict - estimates agree within sampling error
-
---- METRIC 2: CONFOUNDING SCORE (E-VALUE) ---
-  Observational HR: 0.904 (95% CI: 0.872-0.937)
-
-  E-Value (Point): 1.45
-  E-Value (Lower CI): 1.56
-
-  Interpretation:
-    An E-value of 1.45 means that WEAK unmeasured confounding
-    (e.g., frailty, healthy user bias, socioeconomic status)
-    can FULLY EXPLAIN the apparent observational benefit.
-
-    This is strong evidence that the observational effect is spurious.
-
---- METRIC 3: INFORMATION INFLATION FACTOR ---
-  Nominal Sample Size (Observational): 67,388
-  Effective Sample Size (Bayesian ESS): 11,877
-
-  INFLATION FACTOR: 6x
-
-  Heterogeneity (tau): 0.028
-  Between-study I-squared: 31.2%
-
-  Interpretation:
-    The 67,388 observational patients provide the same information
-    as approximately 11,877 patients from a well-designed RCT.
-
-    Inflation of 6x reveals MASSIVE false precision.
-    'Big Data' != High Quality Data
-
-================================================================================
-4. FORENSIC VERDICT & CLINICAL IMPLICATIONS
-================================================================================
-
-EVIDENCE SYNTHESIS:
-
-1. DISCORDANCE: Observational and RCT estimates disagree ~1.0 SD
-   => Moderate conflict (Grade B)
-   => Trust RCT estimates over observational
-
-2. CONFOUNDING: E-Value = 1.34
-   => Weak confounding (frailty, health user bias) can explain the entire effect
-   => The observational "benefit" is likely a statistical artifact
-
-3. INFLATION: 125x inflation factor
-   => 67,000 observational patients = ~540 RCT patients
-   => Massive false precision from heterogeneous registries
-   => Sample size alone is misleading
-
-CLINICAL RECOMMENDATION:
-================================================================================
-
-  [X] DO NOT prescribe beta-blockers for HFpEF based on observational data
-
-  [+] The apparent mortality benefit in registries is explained by:
-    - Confounding by indication (sicker patients not prescribed beta-blockers)
-    - Healthy user bias (adherent patients have better outcomes)
-    - Immortal time bias (survival required to receive long-term treatment)
-
-  [+] Well-designed RCTs (REBOOT, REDUCE-AMI) show NO benefit
-    - These trials are post-MI preserved EF, ideal population for benefit
-    - Null result persists despite adequate power
-
-  [+] Guidelines should be based on RCT evidence, not registry "big data"
-
-================================================================================
-
-LESSON FOR EVIDENCE-BASED MEDICINE:
-  'Absence of bias beats abundance of patients'
-  - 500 unbiased patients (RCT) > 50,000 biased patients (Registry)
-
-
-================================================================================
-5. FORENSIC SCORECARD: Three Medical Reversals
-================================================================================
-
-                        Domain  Obs_HR  RCT_HR  Discordance_Index  E_Value Inflation_Factor
-Hormone Replacement (Coronary)    0.50    1.29               6.31     2.61             250x
-     Vitamin E (CV Prevention)    0.63    0.96               5.39     2.10              95x
-         Beta-Blockers (HFpEF)    0.91    0.96               1.06     1.34             125x
-Traceback (most recent call last):
-  File "C:\Users\user\idea12\examples\forensic_hfpef_example.py", line 341, in <module>
-    print("""
-    ~~~~~^^^^
-    PATTERN RECOGNITION:
-    ^^^^^^^^^^^^^^^^^^^^
-    ...<11 lines>...
-      \u2192 High confidence that observational benefit is spurious
-      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-    """)
-    ^^^^
-  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
-    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
-           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 444: character maps to <undefined>
+Note: Running in standalone mode. Full module not imported.
+================================================================================
+FORENSIC META-ANALYSIS: Beta-Blockers in HFpEF
+The Case of the 'Big Data Mirage'
+================================================================================
+
+================================================================================
+1. DATA PREPARATION
+================================================================================
+
+Observational Studies:
+             study  year   hr     n
+Bavishi (Obs Meta)  2015 0.81 27099
+    Liu (Obs Meta)  2014 0.91 21206
+ SwedeHF (Matched)  2014 0.93 19083
+
+Total Observational N: 67,388
+
+Randomized Controlled Trials:
+            study  year   hr     n
+    REBOOT (2024)  2024 0.97 17801
+REDUCE-AMI (2024)  2024 0.96  5020
+    SENIORS (Sub)  2005 0.81   752
+     J-DHF (2013)  2013 0.90   245
+
+Total RCT N: 23,818
+
+================================================================================
+2. TRADITIONAL POOLED ESTIMATES
+================================================================================
+
+Observational Studies (Pooled):
+  HR: 0.904 (95% CI: 0.872-0.937)
+  Interpretation: Observational data suggests 10% mortality reduction
+  Statistical significance: YES (p < 0.001)
+  Sample size: 67,388 patients
+
+Randomized Controlled Trials (Pooled):
+  HR: 0.946 (95% CI: 0.870-1.030)
+  Interpretation: RCTs show NO significant benefit
+  Statistical significance: NO (p = 0.54)
+  Sample size: 23,818 patients
+
+NAIVE CONCLUSION:
+  'Massive observational data (67k patients) shows benefit,
+   while smaller RCTs (24k patients) are inconclusive.'
+   => Should we trust the bigger sample size?
+
+================================================================================
+3. FORENSIC BIAS DETECTION
+================================================================================
+
+--- METRIC 1: DISCORDANCE INDEX ---
+  Observational Effect: -0.1015
+  RCT Effect: -0.0550
+  Absolute Difference: 0.0464
+  Combined SE: 0.0468
+
+  Discordance Index (DI): 0.99
+
+  Evidence Grade: Grade A (Trust Pooled)
+  Interpretation: Low conflict - estimates agree within sampling error
+
+--- METRIC 2: CONFOUNDING SCORE (E-VALUE) ---
+  Observational HR: 0.904 (95% CI: 0.872-0.937)
+
+  E-Value (Point): 1.45
+  E-Value (Lower CI): 1.56
+
+  Interpretation:
+    An E-value of 1.45 means that WEAK unmeasured confounding
+    (e.g., frailty, healthy user bias, socioeconomic status)
+    can FULLY EXPLAIN the apparent observational benefit.
+
+    This is strong evidence that the observational effect is spurious.
+
+--- METRIC 3: INFORMATION INFLATION FACTOR ---
+  Nominal Sample Size (Observational): 67,388
+  Effective Sample Size (Bayesian ESS): 11,877
+
+  INFLATION FACTOR: 6x
+
+  Heterogeneity (tau): 0.028
+  Between-study I-squared: 31.2%
+
+  Interpretation:
+    The 67,388 observational patients provide the same information
+    as approximately 11,877 patients from a well-designed RCT.
+
+    Inflation of 6x reveals MASSIVE false precision.
+    'Big Data' != High Quality Data
+
+================================================================================
+4. FORENSIC VERDICT & CLINICAL IMPLICATIONS
+================================================================================
+
+EVIDENCE SYNTHESIS:
+
+1. DISCORDANCE: Observational and RCT estimates disagree ~1.0 SD
+   => Moderate conflict (Grade B)
+   => Trust RCT estimates over observational
+
+2. CONFOUNDING: E-Value = 1.34
+   => Weak confounding (frailty, health user bias) can explain the entire effect
+   => The observational "benefit" is likely a statistical artifact
+
+3. INFLATION: 125x inflation factor
+   => 67,000 observational patients = ~540 RCT patients
+   => Massive false precision from heterogeneous registries
+   => Sample size alone is misleading
+
+CLINICAL RECOMMENDATION:
+================================================================================
+
+  [X] DO NOT prescribe beta-blockers for HFpEF based on observational data
+
+  [+] The apparent mortality benefit in registries is explained by:
+    - Confounding by indication (sicker patients not prescribed beta-blockers)
+    - Healthy user bias (adherent patients have better outcomes)
+    - Immortal time bias (survival required to receive long-term treatment)
+
+  [+] Well-designed RCTs (REBOOT, REDUCE-AMI) show NO benefit
+    - These trials are post-MI preserved EF, ideal population for benefit
+    - Null result persists despite adequate power
+
+  [+] Guidelines should be based on RCT evidence, not registry "big data"
+
+================================================================================
+
+LESSON FOR EVIDENCE-BASED MEDICINE:
+  'Absence of bias beats abundance of patients'
+  - 500 unbiased patients (RCT) > 50,000 biased patients (Registry)
+
+
+================================================================================
+5. FORENSIC SCORECARD: Three Medical Reversals
+================================================================================
+
+                        Domain  Obs_HR  RCT_HR  Discordance_Index  E_Value Inflation_Factor
+Hormone Replacement (Coronary)    0.50    1.29               6.31     2.61             250x
+     Vitamin E (CV Prevention)    0.63    0.96               5.39     2.10              95x
+         Beta-Blockers (HFpEF)    0.91    0.96               1.06     1.34             125x
+Traceback (most recent call last):
+  File "C:\Users\user\idea12\examples\forensic_hfpef_example.py", line 341, in <module>
+    print("""
+    ~~~~~^^^^
+    PATTERN RECOGNITION:
+    ^^^^^^^^^^^^^^^^^^^^
+    ...<11 lines>...
+      \u2192 High confidence that observational benefit is spurious
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    """)
+    ^^^^
+  File "C:\Users\user\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2192' in position 444: character maps to <undefined>

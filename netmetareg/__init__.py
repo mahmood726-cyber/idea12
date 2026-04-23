@@ -5,19 +5,10 @@ A comprehensive framework for network meta-analysis with meta-regression,
 inconsistency detection, and novel methodological extensions.
 """
 
+from importlib import import_module
+
 __version__ = "0.1.0"
 __author__ = "Advanced Meta-Analysis Research Group"
-
-from .core.network import TreatmentNetwork
-from .core.data_structure import NMAData
-from .regression.meta_regression import NetworkMetaRegression
-from .inconsistency.node_splitting import NodeSplitting
-from .inconsistency.design_treatment import DesignTreatmentInteraction
-from .models.bayesian_nma import BayesianNMA
-from .models.frequentist_nma import FrequentistNMA
-from .selection.lasso_selection import LassoSelection
-from .utils.missing_data import MultipleImputation
-from .utils.simulation import NMASimulator, SimulationParameters
 
 __all__ = [
     'TreatmentNetwork',
@@ -32,3 +23,27 @@ __all__ = [
     'NMASimulator',
     'SimulationParameters',
 ]
+
+_EXPORTS = {
+    'TreatmentNetwork': ('.core.network', 'TreatmentNetwork'),
+    'NMAData': ('.core.data_structure', 'NMAData'),
+    'NetworkMetaRegression': ('.regression.meta_regression', 'NetworkMetaRegression'),
+    'NodeSplitting': ('.inconsistency.node_splitting', 'NodeSplitting'),
+    'DesignTreatmentInteraction': ('.inconsistency.design_treatment', 'DesignTreatmentInteraction'),
+    'BayesianNMA': ('.models.bayesian_nma', 'BayesianNMA'),
+    'FrequentistNMA': ('.models.frequentist_nma', 'FrequentistNMA'),
+    'LassoSelection': ('.selection.lasso_selection', 'LassoSelection'),
+    'MultipleImputation': ('.utils.missing_data', 'MultipleImputation'),
+    'NMASimulator': ('.utils.simulation', 'NMASimulator'),
+    'SimulationParameters': ('.utils.simulation', 'SimulationParameters'),
+}
+
+
+def __getattr__(name):
+    try:
+        module_name, attr_name = _EXPORTS[name]
+    except KeyError as exc:
+        raise AttributeError(f"module {__name__!r} has no attribute {name!r}") from exc
+    value = getattr(import_module(module_name, __name__), attr_name)
+    globals()[name] = value
+    return value

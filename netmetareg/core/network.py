@@ -6,7 +6,10 @@ including connectivity analysis, loop detection, and network geometry.
 """
 
 import numpy as np
-import networkx as nx
+try:
+    import networkx as nx
+except ModuleNotFoundError:
+    from .. import _simple_networkx as nx
 from typing import List, Dict, Set, Tuple, Optional
 from collections import defaultdict
 from .data_structure import NMAData, Study
