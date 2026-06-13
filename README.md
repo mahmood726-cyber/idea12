@@ -1,10 +1,10 @@
 # Network Meta-Regression with Inconsistency Modeling
 
-A comprehensive Python framework for advanced network meta-analysis with meta-regression, inconsistency detection, and novel methodological extensions.
+A Python framework for network meta-analysis with meta-regression, inconsistency detection, and methodological extensions.
 
 ## Overview
 
-This package implements state-of-the-art methods for network meta-analysis that simultaneously:
+This package implements methods for network meta-analysis that support:
 
 - **Meta-regression**: Includes continuous/categorical effect modifiers with treatment-by-covariate interactions
 - **Inconsistency modeling**: Detects and quantifies violations of transitivity using node-splitting and design-by-treatment interaction
@@ -21,7 +21,7 @@ This package implements state-of-the-art methods for network meta-analysis that 
 - Class effects modeling
 - Heterogeneity vs. inconsistency decomposition
 
-### Novel Methodological Extensions
+### Methodological Extensions
 1. **Automated Covariate Selection**: LASSO/elastic net regularization with cross-validation
 2. **Hierarchical Centering**: Network-average centering to improve interpretation and avoid extrapolation
 3. **Multiple Imputation**: Handle missing study-level covariates with Rubin's rules
@@ -44,29 +44,40 @@ pip install -r requirements.txt
 ## Quick Start
 
 ```python
-from netmetareg import NetworkMetaRegression
-from netmetareg.data import load_example_data
+import numpy as np
+from netmetareg import NMAData, NetworkMetaRegression, NodeSplitting
+from netmetareg.core.data_structure import Study
 
-# Load example data
-data = load_example_data('antidepressants')
+# Build the network from study-level contrasts
+studies = [
+    Study(study_id="S1", treatments=["Placebo", "SSRI-A"],
+          effects=np.array([-0.42]), se=np.array([0.15]), n=np.array([100, 98]),
+          covariates={"mean_age": 45, "prop_female": 0.65, "year": 2015}),
+    Study(study_id="S2", treatments=["Placebo", "SSRI-B"],
+          effects=np.array([-0.38]), se=np.array([0.14]), n=np.array([105, 103]),
+          covariates={"mean_age": 42, "prop_female": 0.58, "year": 2016}),
+    Study(study_id="S3", treatments=["SSRI-A", "SSRI-B"],
+          effects=np.array([0.05]), se=np.array([0.16]), n=np.array([90, 92]),
+          covariates={"mean_age": 47, "prop_female": 0.60, "year": 2017}),
+]
+data = NMAData(studies=studies, reference_treatment="Placebo")
 
 # Fit network meta-regression
 model = NetworkMetaRegression(
     data=data,
-    covariates=['mean_age', 'prop_female', 'year'],
-    inconsistency_method='node_splitting'
+    covariates=["mean_age", "prop_female", "year"],
 )
+results = model.fit(method="bayesian")
 
-# Fit model
-results = model.fit(method='bayesian')
+# Check inconsistency for a specific comparison via node-splitting
+node_split = NodeSplitting(data)
+inconsistency = node_split.split_node("Placebo", "SSRI-A")
 
-# Check inconsistency
-inconsistency = model.check_inconsistency()
-
-# Predict for new population
-new_pop = {'mean_age': 45, 'prop_female': 0.6, 'year': 2020}
-predictions = model.predict(new_pop)
+# Predict for a new population
+predictions = model.predict({"mean_age": 45, "prop_female": 0.6, "year": 2020})
 ```
+
+See `examples/example_antidepressants.py` for a complete worked example.
 
 ## Citation
 
