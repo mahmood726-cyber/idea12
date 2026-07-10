@@ -418,10 +418,12 @@ class ForensicAnalyzer:
         # Calculate heterogeneity adjustment
         # If we have multiple studies, adjust for between-study variance
         if self.obs_pooled['n_studies'] > 1:
-            # Estimate tau² from data
+            # Estimate tau² from data using DerSimonian-Laird
             q_stat = self._calculate_q_statistic(self.obs_data)
-            tau_sq = max(0, (q_stat - (self.obs_pooled['n_studies'] - 1)) /
-                         np.sum(1 / self.obs_data['se']**2))
+            w = 1 / self.obs_data['se']**2
+            # DL denominator: C = sum(w) - sum(w^2)/sum(w) (NOT sum(w))
+            c = np.sum(w) - np.sum(w**2) / np.sum(w)
+            tau_sq = max(0, (q_stat - (self.obs_pooled['n_studies'] - 1)) / c)
 
             # Adjust ESS for heterogeneity
             # ESS_adj = ESS / (1 + tau²/sigma²)
@@ -463,7 +465,12 @@ class ForensicAnalyzer:
             try:
                 from .bayesian_ess import BayesianESSCalculator
                 ess_calc = BayesianESSCalculator(self.obs_data)
-                inflation_factor, nominal_n, effective_n = ess_calc.calculate()
+                ess = ess_calc.calculate()
+                # calculate() returns an ESSResults dataclass (not iterable);
+                # use attribute access, not positional unpacking (field order differs).
+                inflation_factor = ess.inflation_factor
+                nominal_n = ess.nominal_n
+                effective_n = ess.effective_n
             except ImportError:
                 warnings.warn("PyMC not available. Using variance-based ESS approximation.")
                 inflation_factor, nominal_n, effective_n = self.calculate_inflation()
@@ -650,7 +657,9 @@ def calculate_inflation_factor(
     if len(effect_sizes) > 1:
         pooled_effect = np.sum(effect_sizes * weights) / np.sum(weights)
         q = np.sum(weights * (effect_sizes - pooled_effect) ** 2)
-        tau_sq = max(0, (q - (len(effect_sizes) - 1)) / np.sum(weights))
+        # DL denominator: C = sum(w) - sum(w^2)/sum(w) (NOT sum(w))
+        c = np.sum(weights) - np.sum(weights ** 2) / np.sum(weights)
+        tau_sq = max(0, (q - (len(effect_sizes) - 1)) / c)
         heterogeneity_penalty = 1 + tau_sq / (sigma ** 2)
         effective_n = effective_n / heterogeneity_penalty
 

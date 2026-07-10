@@ -11,9 +11,6 @@ scikit-learn>=1.0.0
 pymc>=5.0.0
 arviz>=0.14.0
 
-# Optimization
-cvxpy>=1.2.0
-
 # Network analysis
 networkx>=2.6.0
 
@@ -24,7 +21,6 @@ plotly>=5.0.0
 
 # Missing data imputation
 scikit-learn>=1.0.0
-fancyimpute>=0.7.0
 
 # Utilities
 tqdm>=4.62.0
