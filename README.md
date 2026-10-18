@@ -4,6 +4,11 @@ A Python framework for network meta-analysis with meta-regression, inconsistency
 
 ## Overview
 
+Dataframe import rejects missing study identifiers, duplicate column labels,
+missing explicitly requested columns, and conflicting study-level covariates.
+Contrast input requires one row per study; use arm format for multi-arm studies.
+Unsupported repeated contrasts raise an error instead of silently losing rows.
+
 This package implements methods for network meta-analysis that support:
 
 - **Meta-regression**: Includes continuous/categorical effect modifiers with treatment-by-covariate interactions

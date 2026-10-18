@@ -178,9 +178,37 @@ class NMAData:
             raise ValueError("format must be 'contrast' or 'arm'")
 
         covariate_cols = covariate_cols or []
+        if not df.columns.is_unique:
+            raise ValueError("Input column labels must be unique")
+        required = [study_col] + list(covariate_cols)
+        if format == 'contrast':
+            required += [treatment_col + '_1', treatment_col + '_2']
+            if n_col:
+                required += [n_col + '_1', n_col + '_2']
+        else:
+            required.append(treatment_col)
+            if n_col:
+                required.append(n_col)
+        required += [name for name in (effect_col, se_col) if name]
+        missing = [name for name in required if name not in df.columns]
+        if missing:
+            raise ValueError(f"Missing requested columns: {missing}")
+        identifiers = df[study_col]
+        if identifiers.isna().any() or identifiers.astype(str).str.strip().eq('').any():
+            raise ValueError("Every row must have a nonempty study identifier")
+        if identifiers.map(str).nunique() != identifiers.nunique():
+            raise ValueError("Distinct study identifiers must remain distinct when converted to strings")
+        if format == 'contrast' and identifiers.duplicated().any():
+            raise ValueError("Contrast format requires one row per study; use arm format for multi-arm studies")
+
         studies = []
 
-        for study_id, group in df.groupby(study_col):
+        for study_id, group in df.groupby(study_col, observed=True):
+
+            for cov in covariate_cols:
+                if group[cov].nunique(dropna=False) != 1:
+                    raise ValueError(f"Study {study_id!r} has conflicting values for covariate {cov!r}")
+
             if format == 'contrast':
                 # Contrast-based format: one row per study with treatment comparison
                 row = group.iloc[0]
