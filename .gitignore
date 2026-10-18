@@ -72,3 +72,10 @@ examples/*.pdf
 *.pkl
 *.h5
 *.nc
+
+# Local verification and recovery output
+PROGRESS.md
+STUCK_FAILURES.md
+STUCK_FAILURES.jsonl
+sentinel-findings.md
+sentinel-findings.jsonl
